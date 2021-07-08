@@ -12,4 +12,6 @@ Add yourself as a contributor to this project as a Markdown link that links your
 
 ## Mentors
 
+- [Luis Augusto](https://github.com/luisaugusto) 🚀
+
 ## Code of Conduct Contacts
