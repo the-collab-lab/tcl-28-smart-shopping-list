@@ -17,3 +17,5 @@ Add yourself as a contributor to this project as a Markdown link that links your
 - [Megan Sullivan](https://github.com/meganesu) 🥳
 
 ## Code of Conduct Contacts
+
+- Stacie Taylor
