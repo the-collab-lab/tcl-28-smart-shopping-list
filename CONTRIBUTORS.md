@@ -15,6 +15,7 @@ Add yourself as a contributor to this project as a Markdown link that links your
 
 - [Luis Augusto](https://github.com/luisaugusto) 🚀
 - [Megan Sullivan](https://github.com/meganesu) 🥳
+- [Scott Reu](https://github.com/gatsbysghost) 🐻
 
 ## Code of Conduct Contacts
 
