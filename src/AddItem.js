@@ -4,9 +4,8 @@ const AddItem = () => (item) => {
   // get a reference to the Firestore document
   const handleClick = async () => {
     const itemTemplate = {
-      uid: item.uid,
-      name: item.name,
-      time: item.time,
+      name: 'New item',
+      date: Date.now(),
     };
     await firestore().collection('items').add(itemTemplate);
   };
@@ -15,3 +14,8 @@ const AddItem = () => (item) => {
 };
 
 export default AddItem;
+
+// Template for later:
+// uid: item.uid,
+// name: item.name,
+// time: item.time,

@@ -1,13 +1,13 @@
 import React from 'react';
 import './App.css';
 import ItemsList from './ItemsList';
-import { fb } from './lib/firebase';
+import AddItem from './AddItem';
 
 function App() {
   return (
     <div className="App">
       <ItemsList />
-      <button>Add Item</button>
+      <AddItem />
     </div>
   );
 }
