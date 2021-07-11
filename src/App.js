@@ -1,9 +1,15 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import ItemsList from './ItemsList';
+import { fb } from './lib/firebase';
 
 function App() {
-  return <div className="App"></div>;
+  return (
+    <div className="App">
+      <ItemsList />
+      <button>Add Item</button>
+    </div>
+  );
 }
 
 export default App;
