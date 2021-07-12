@@ -1,11 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const Footer = () => {
   return (
-    <div>
-      <Link to="/add">Add An Item</Link>
-      <Link to="/list">View Your List</Link>
+    <div className="footer">
+      <NavLink to="/add" activeClassName="active-link">
+        Add An Item
+      </NavLink>
+      <NavLink to="/list" activeClassName="active-link">
+        View Your List
+      </NavLink>
     </div>
   );
 };
