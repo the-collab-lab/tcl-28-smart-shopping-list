@@ -4,8 +4,6 @@ import AddItem from './AddItem';
 import ItemsList from './ItemsList';
 import Footer from './Footer';
 import './App.css';
-import ItemsList from './ItemsList';
-import AddItem from './AddItem';
 
 function App() {
   return (
