@@ -1,18 +1,20 @@
 import React, { useEffect } from 'react';
 import getToken from './lib/tokens';
 import { useHistory } from 'react-router-dom';
+import { firestore } from './lib/firebase';
 
 const Home = () => {
   const history = useHistory();
 
   useEffect(() => {
-    const token = JSON.parse(localStorage.getItem('token'));
+    const token = localStorage.getItem('token');
     if (token) history.push('/list');
   });
 
-  const createToken = () => {
+  const createToken = async () => {
     const token = getToken();
     localStorage.setItem('token', token);
+    await firestore.collection('tokens').doc(token).set({});
     history.push('/list');
   };
 
