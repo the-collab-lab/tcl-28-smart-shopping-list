@@ -26,6 +26,21 @@ const AddItem = () => {
             placeholder="Type item here"
           />
         </label>
+        <fieldset>
+          <legend>How soon will you buy this again?</legend>
+          <label for="frequency">
+            <input type="radio" name="frequency" value={7}></input>
+            Soon
+          </label>
+          <label for="frequency">
+            <input type="radio" name="frequency" value={14}></input>
+            Kind of soon
+          </label>
+          <label for="frequency">
+            <input type="radio" name="frequency" value={30}></input>
+            Not soon
+          </label>
+        </fieldset>
         <button onClick={handleClick}>Add an item</button>
       </form>
     </div>
