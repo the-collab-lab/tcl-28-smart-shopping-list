@@ -33,10 +33,8 @@ const AddItem = () => {
   const handleChange = (e) => {
     if (e.target.name === 'item') {
       setItem(e.target.value);
-      console.log(item);
     } else if (e.target.name === 'frequency') {
       setFrequency(e.target.value);
-      console.log(frequency);
     }
   };
 
@@ -91,8 +89,3 @@ const AddItem = () => {
 };
 
 export default AddItem;
-
-// Template for later:
-// uid: item.uid,
-// name: item.name,
-// time: item.time,
