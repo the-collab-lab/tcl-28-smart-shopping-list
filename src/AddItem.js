@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import getToken from './lib/tokens';
 import { firestore } from './lib/firebase';
 
 const AddItem = () => {
@@ -6,14 +7,20 @@ const AddItem = () => {
   const [frequency, setFrequency] = useState(0);
   const [lastPurchasedDate, setLastPurchasedDate] = useState(null);
 
-  const token = JSON.parse(localStorage.getItem('token'));
+  // For testing purposes to make sure we can push new item to Firestore
+  useEffect(() => {
+    const token = getToken();
+    localStorage.setItem('token', JSON.stringify(token));
+  });
 
   // get a reference to the Firestore document
-  const handleClick = async () => {
+  const handleClick = async (e) => {
+    e.preventDefault();
     const itemTemplate = {
       name: item,
-
-      date: Date.now(),
+      token: JSON.parse(localStorage.getItem('token')),
+      frequency,
+      lastPurchasedDate,
     };
     await firestore.collection('items').add(itemTemplate);
   };
@@ -72,7 +79,7 @@ const AddItem = () => {
             Not soon
           </label>
         </fieldset>
-        <button onClick={handleClick}>Add an item</button>
+        <button type="submit">Add an item</button>
       </form>
     </div>
   );
