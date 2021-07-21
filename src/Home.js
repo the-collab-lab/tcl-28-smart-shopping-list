@@ -12,7 +12,7 @@ const Home = () => {
 
   const createToken = () => {
     const token = getToken();
-    localStorage.setItem('token', JSON.stringify(token));
+    localStorage.setItem('token', token);
     history.push('/list');
   };
 
