@@ -42,45 +42,41 @@ const AddItem = () => {
     <div>
       <h1>Smart Shopping List</h1>
       <form onSubmit={handleClick}>
-        <label htmlFor="item">
-          Item Name:
-          <input
-            type="text"
-            name="item"
-            value={item}
-            placeholder="Type item here"
-            onChange={handleChange}
-          />
-        </label>
+        <label htmlFor="item">Item Name:</label>
+        <input
+          type="text"
+          name="item"
+          id="item"
+          value={item}
+          placeholder="Type item here"
+          onChange={handleChange}
+        />
         <fieldset>
           <legend>How soon will you buy this again?</legend>
-          <label htmlFor="frequency">
-            <input
-              type="radio"
-              name="frequency"
-              value={7}
-              onChange={handleChange}
-            ></input>
-            Soon
-          </label>
-          <label htmlFor="frequency">
-            <input
-              type="radio"
-              name="frequency"
-              value={14}
-              onChange={handleChange}
-            ></input>
-            Kind of soon
-          </label>
-          <label htmlFor="frequency">
-            <input
-              type="radio"
-              name="frequency"
-              value={30}
-              onChange={handleChange}
-            ></input>
-            Not soon
-          </label>
+          <input
+            type="radio"
+            name="frequency"
+            id="soon"
+            value={7}
+            onChange={handleChange}
+          ></input>
+          <label htmlFor="soon">Soon</label>
+          <input
+            type="radio"
+            name="frequency"
+            id="kind-of-soon"
+            value={14}
+            onChange={handleChange}
+          ></input>
+          <label htmlFor="kind-of-soon"> Kind of soon</label>
+          <input
+            type="radio"
+            name="frequency"
+            id="not-soon"
+            value={30}
+            onChange={handleChange}
+          ></input>
+          <label htmlFor="not-soon"> Not soon</label>
         </fieldset>
         <button type="submit">Add an item</button>
       </form>
