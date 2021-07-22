@@ -1,4 +1,4 @@
-import { firestore } from './lib/firebase';
+import { firestore } from '../lib/firebase';
 import { useCollection } from 'react-firebase-hooks/firestore';
 
 const ItemsList = () => {

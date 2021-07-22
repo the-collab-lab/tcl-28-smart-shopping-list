@@ -1,6 +1,5 @@
-import { useState, useEffect } from 'react';
-import getToken from './lib/tokens';
-import { firestore } from './lib/firebase';
+import { useState } from 'react';
+import { firestore } from '../lib/firebase';
 import { useHistory } from 'react-router-dom';
 
 const AddItem = () => {
@@ -9,18 +8,12 @@ const AddItem = () => {
   const [lastPurchasedDate, setLastPurchasedDate] = useState(null);
   const history = useHistory();
 
-  // For testing purposes to make sure we can push new item to Firestore
-  useEffect(() => {
-    const token = getToken();
-    localStorage.setItem('token', JSON.stringify(token));
-  });
-
   // get a reference to the Firestore document
   const handleClick = async (e) => {
     e.preventDefault();
     const itemTemplate = {
       name: item,
-      token: JSON.parse(localStorage.getItem('token')),
+      token: localStorage.getItem('token'),
       frequency,
       lastPurchasedDate,
     };
