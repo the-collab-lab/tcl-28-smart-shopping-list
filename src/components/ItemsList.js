@@ -1,4 +1,4 @@
-import { firestore } from '../lib/firebase';
+import { firestore } from './lib/firebase';
 import { useCollection } from 'react-firebase-hooks/firestore';
 
 const ItemsList = () => {
@@ -12,10 +12,12 @@ const ItemsList = () => {
       {error && <>Error</>}
       {snapshot && (
         <>
-          Collection:
-          {snapshot.docs.map((doc, index) => (
-            <pre key={index}>{JSON.stringify(doc.data())}</pre>
-          ))}
+          <h1>Collection:</h1>
+          <ul>
+            {snapshot.docs.map((doc, index) => (
+              <li key={index}>{doc.data().name}</li>
+            ))}
+          </ul>
         </>
       )}
     </div>
