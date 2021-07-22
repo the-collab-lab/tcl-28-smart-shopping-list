@@ -50,6 +50,7 @@ const AddItem = () => {
           value={item}
           placeholder="Type item here"
           onChange={handleChange}
+          required
         />
         <fieldset>
           <legend>How soon will you buy this again?</legend>
@@ -59,6 +60,7 @@ const AddItem = () => {
             id="soon"
             value={7}
             onChange={handleChange}
+            required
           ></input>
           <label htmlFor="soon">Soon</label>
           <input
@@ -67,6 +69,7 @@ const AddItem = () => {
             id="kind-of-soon"
             value={14}
             onChange={handleChange}
+            required
           ></input>
           <label htmlFor="kind-of-soon"> Kind of soon</label>
           <input
@@ -75,6 +78,7 @@ const AddItem = () => {
             id="not-soon"
             value={30}
             onChange={handleChange}
+            required
           ></input>
           <label htmlFor="not-soon"> Not soon</label>
         </fieldset>
