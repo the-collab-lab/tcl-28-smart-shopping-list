@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import getToken from './lib/tokens';
+import getToken from '../lib/tokens';
 import { useHistory } from 'react-router-dom';
-import { firestore } from './lib/firebase';
+import { firestore } from '../lib/firebase';
 
 const Home = () => {
   const history = useHistory();
