@@ -7,7 +7,7 @@ const Home = () => {
   const history = useHistory();
 
   useEffect(() => {
-    const token = JSON.parse(localStorage.getItem('token'));
+    const token = localStorage.getItem('token');
     if (token) history.push('/list');
   });
 
