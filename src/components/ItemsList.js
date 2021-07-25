@@ -6,6 +6,10 @@ const ItemsList = () => {
     firestore.collection('items'),
   );
 
+  const token = localStorage.getItem('token');
+
+  // snapshot.docs.where("token", "==", token).get()
+
   return (
     <div>
       {loading && <>Loading</>}

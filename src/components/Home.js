@@ -5,7 +5,7 @@ import { firestore } from '../lib/firebase';
 
 const Home = () => {
   const history = useHistory();
-  const [sharedToken, setSharedToken] = useState(null);
+  const [sharedToken, setSharedToken] = useState('');
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -13,10 +13,11 @@ const Home = () => {
   });
 
   const createToken = async (sharedToken) => {
-    if (sharedToken) {
-      const token = await getToken();
-    }
-    const token = getToken();
+    // if (sharedToken) {
+    //   const token = await getToken();
+    // }
+    // const token = getToken();
+    const token = sharedToken || getToken();
     localStorage.setItem('token', token);
     await firestore.collection('tokens').doc(token).set({});
     history.push('/list');
