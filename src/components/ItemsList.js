@@ -14,17 +14,19 @@ const ItemsList = () => {
       firestore
         .collection('items')
         .where('token', '==', token)
-        .get()
-        .then((snapshot) => {
-          if (!snapshot.empty) {
-            snapshot.docs.map((doc) => setItems(doc.data().name));
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+        .onSnapshot(
+          (querySnapshot) => {
+            if (!querySnapshot.empty) {
+              querySnapshot.docs.map((doc) => setItems(doc.data().name));
+            }
+          },
+          (error) => {
+            console.log(error);
+          },
+        );
     }
   });
+
   return (
     <div>
       {loading && <>Loading</>}
