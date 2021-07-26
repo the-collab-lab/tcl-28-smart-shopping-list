@@ -17,7 +17,7 @@ const ItemsList = () => {
         .onSnapshot(
           (querySnapshot) => {
             if (!querySnapshot.empty) {
-              querySnapshot.docs.map((doc) => setItems(doc.data().name));
+              setItems(querySnapshot.docs.map((doc) => doc.data()));
             }
           },
           (error) => {
@@ -35,11 +35,11 @@ const ItemsList = () => {
         <>
           <h1>Collection:</h1>
           <ul>
-            {/* {items.map((item, index) => (
-              <li key={index}>{item}</li>
-            ))} */}
+            {items.map((item, index) => (
+              <li key={index}>{item.name}</li>
+            ))}
 
-            <li>{items}</li>
+            {/*<li>{items}</li>*/}
           </ul>
         </>
       )}
