@@ -13,10 +13,6 @@ const Home = () => {
   });
 
   const createToken = async (sharedToken) => {
-    // if (sharedToken) {
-    //   const token = await getToken();
-    // }
-    // const token = getToken();
     const token = sharedToken || getToken();
     localStorage.setItem('token', token);
     await firestore.collection('tokens').doc(token).set({});

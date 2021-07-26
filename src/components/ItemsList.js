@@ -1,15 +1,30 @@
 import { firestore } from '../lib/firebase';
 import { useCollection } from 'react-firebase-hooks/firestore';
+import { useEffect, useState } from 'react';
 
 const ItemsList = () => {
+  const [items, setItems] = useState([]);
   const [snapshot, loading, error] = useCollection(
     firestore.collection('items'),
   );
 
-  const token = localStorage.getItem('token');
-
-  // snapshot.docs.where("token", "==", token).get()
-
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      firestore
+        .collection('items')
+        .where('token', '==', token)
+        .get()
+        .then((snapshot) => {
+          if (!snapshot.empty) {
+            snapshot.docs.map((doc) => setItems(doc.data().name));
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  });
   return (
     <div>
       {loading && <>Loading</>}
@@ -18,9 +33,11 @@ const ItemsList = () => {
         <>
           <h1>Collection:</h1>
           <ul>
-            {snapshot.docs.map((doc, index) => (
-              <li key={index}>{doc.data().name}</li>
-            ))}
+            {/* {items.map((item, index) => (
+              <li key={index}>{item}</li>
+            ))} */}
+
+            <li>{items}</li>
           </ul>
         </>
       )}
