@@ -3,29 +3,30 @@ import { useCollection } from 'react-firebase-hooks/firestore';
 import { useEffect, useState } from 'react';
 
 const ItemsList = () => {
-  const [items, setItems] = useState([]);
+  const token = localStorage.getItem('token');
   const [snapshot, loading, error] = useCollection(
-    firestore.collection('items'),
+    firestore.collection('items').where('token', '==', token),
   );
 
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      firestore
-        .collection('items')
-        .where('token', '==', token)
-        .onSnapshot(
-          (querySnapshot) => {
-            if (!querySnapshot.empty) {
-              setItems(querySnapshot.docs.map((doc) => doc.data()));
-            }
-          },
-          (error) => {
-            console.log(error);
-          },
-        );
-    }
-  });
+  // Alternate solution:
+  // useEffect(() => {
+  //   const token = localStorage.getItem('token');
+  //   if (token) {
+  //     firestore
+  //       .collection('items')
+  //       .where('token', '==', token)
+  //       .onSnapshot(
+  //         (querySnapshot) => {
+  //           if (!querySnapshot.empty) {
+  //             setItems(querySnapshot.docs.map((doc) => doc.data()));
+  //           }
+  //         },
+  //         (error) => {
+  //           console.log(error);
+  //         },
+  //       );
+  //   }
+  // });
 
   return (
     <div>
@@ -35,11 +36,9 @@ const ItemsList = () => {
         <>
           <h1>Collection:</h1>
           <ul>
-            {items.map((item, index) => (
-              <li key={index}>{item.name}</li>
+            {snapshot.docs.map((doc, index) => (
+              <li key={index}>{doc.data().name}</li>
             ))}
-
-            {/*<li>{items}</li>*/}
           </ul>
         </>
       )}
