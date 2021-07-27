@@ -6,14 +6,32 @@ import { firestore } from '../lib/firebase';
 const Home = () => {
   const history = useHistory();
   const [sharedToken, setSharedToken] = useState('');
+  const tokensRef = firestore.collection('tokens');
 
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) history.push('/list');
   });
 
-  const createToken = async (sharedToken) => {
-    const token = sharedToken || getToken();
+  const verifyToken = (e) => {
+    e.preventDefault();
+    tokensRef
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          if (doc.id === sharedToken) {
+            localStorage.setItem('token', sharedToken);
+            history.push('/list');
+          } else {
+            setSharedToken('');
+          }
+        });
+      })
+      .catch((err) => console.log('Error message: ', err));
+  };
+
+  const createToken = async () => {
+    const token = getToken();
     localStorage.setItem('token', token);
     await firestore.collection('tokens').doc(token).set({});
     history.push('/list');
@@ -22,10 +40,10 @@ const Home = () => {
   return (
     <div>
       <h1>Welcome to Your Smart Shopping list!</h1>
-      <button onClick={() => createToken()}>Create a new list</button>
+      <button onClick={createToken}>Create a new list</button>
       <p>-or-</p>
       <p>Join an existing shopping list by entering a three word token.</p>
-      <form onSubmit={() => createToken(sharedToken)}>
+      <form onSubmit={verifyToken}>
         <label htmlFor="token">Share token</label>
         <input
           type="text"
