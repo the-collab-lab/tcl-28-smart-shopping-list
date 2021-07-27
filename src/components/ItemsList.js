@@ -1,7 +1,6 @@
 import { firestore } from '../lib/firebase';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import { useHistory } from 'react-router';
-// import { useEffect, useState } from 'react';
 
 const ItemsList = () => {
   const token = localStorage.getItem('token');
@@ -17,26 +16,6 @@ const ItemsList = () => {
     history.push('/');
   };
 
-  // Alternate solution for filtering items by token:
-  // useEffect(() => {
-  //   const token = localStorage.getItem('token');
-  //   if (token) {
-  //     firestore
-  //       .collection('items')
-  //       .where('token', '==', token)
-  //       .onSnapshot(
-  //         (querySnapshot) => {
-  //           if (!querySnapshot.empty) {
-  //             setItems(querySnapshot.docs.map((doc) => doc.data()));
-  //           }
-  //         },
-  //         (error) => {
-  //           console.log(error);
-  //         },
-  //       );
-  //   }
-  // });
-
   return (
     <div>
       {loading && <>Loading</>}
@@ -51,8 +30,7 @@ const ItemsList = () => {
           </ul>
         </>
       )}
-
-      <button onClick={removeToken}>clear token</button>
+      <button onClick={removeToken}>clear token</button> {/*See comment above*/}
     </div>
   );
 };
