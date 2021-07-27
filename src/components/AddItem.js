@@ -11,16 +11,48 @@ const AddItem = () => {
   // get a reference to the Firestore document
   const handleClick = async (e) => {
     e.preventDefault();
-    const itemTemplate = {
-      name: item,
-      token: localStorage.getItem('token'),
-      frequency,
-      lastPurchasedDate,
-    };
-    await firestore.collection('items').add(itemTemplate);
 
-    alert(`Successfully added ${item} to your list!`);
-    history.push('/list');
+    const formattedItem = item.replace(/[\W_]+/g, '').toLowerCase();
+
+    const token = localStorage.getItem('token');
+
+    let alreadyHave = false;
+
+    await firestore
+      .collection('items')
+      .where('token', '==', token)
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          const formattedElem = doc
+            .data()
+            .name.replace(/[\W_]+/g, '')
+            .toLowerCase();
+          if (formattedElem === formattedItem) {
+            alert('You have already added this item!');
+            alreadyHave = true;
+            const err = new Error('You have already added this item!');
+            throw err;
+          }
+        });
+      })
+      .catch((error) => {
+        console.log('Error adding to list: ', error);
+      });
+
+    if (!alreadyHave) {
+      const itemTemplate = {
+        name: item,
+        token,
+        frequency,
+        lastPurchasedDate,
+      };
+
+      await firestore.collection('items').add(itemTemplate);
+
+      alert(`Successfully added ${item} to your list!`);
+      history.push('/list');
+    }
   };
 
   const handleChange = (e) => {
