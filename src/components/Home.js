@@ -6,6 +6,7 @@ import { firestore } from '../lib/firebase';
 const Home = () => {
   const history = useHistory();
   const [sharedToken, setSharedToken] = useState('');
+  const [sharedTokenError, setSharedTokenError] = useState('');
   const tokensRef = firestore.collection('tokens');
 
   useEffect(() => {
@@ -23,7 +24,7 @@ const Home = () => {
             localStorage.setItem('token', sharedToken);
             history.push('/list');
           } else {
-            setSharedToken('');
+            setSharedTokenError('Invalid token');
           }
         });
       })
@@ -51,6 +52,7 @@ const Home = () => {
           value={sharedToken}
           onChange={(e) => setSharedToken(e.target.value)}
         />
+        {sharedTokenError && <p>Token is not found. Please try again.</p>}
         <button type="submit"> Join an existing list</button>
       </form>
     </div>
