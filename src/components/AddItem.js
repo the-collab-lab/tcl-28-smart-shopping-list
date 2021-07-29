@@ -31,8 +31,6 @@ const AddItem = () => {
           if (formattedElem === formattedItem) {
             alert('You have already added this item!');
             alreadyHave = true;
-            // const err = new Error('You have already added this item!');
-            // throw err;
           }
         });
       })
