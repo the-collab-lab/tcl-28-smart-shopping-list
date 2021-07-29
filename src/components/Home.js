@@ -48,6 +48,7 @@ const Home = () => {
         <label htmlFor="token">Share token</label>
         <input
           type="text"
+          id="token"
           name="token"
           value={sharedToken}
           onChange={(e) => setSharedToken(e.target.value)}
