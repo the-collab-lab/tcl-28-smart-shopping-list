@@ -2,8 +2,10 @@ import { firestore } from '../lib/firebase';
 import { useCollection } from 'react-firebase-hooks/firestore';
 
 const ItemsList = () => {
+  const token = localStorage.getItem('token');
+
   const [snapshot, loading, error] = useCollection(
-    firestore.collection('items'),
+    firestore.collection('items').where('token', '==', token),
   );
 
   return (
