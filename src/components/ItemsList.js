@@ -9,11 +9,13 @@ const ItemsList = () => {
   );
   const history = useHistory();
 
-  // made this function just for testing purposes so it's easier to clear
-  // the token and go back to the home page
   const removeToken = () => {
     localStorage.removeItem('token');
     history.push('/');
+  };
+
+  const addItem = () => {
+    history.push('/add');
   };
 
   return (
@@ -24,7 +26,10 @@ const ItemsList = () => {
       {snapshot && (
         <>
           {!snapshot.docs.length ? (
-            <h2>Your shopping list is currently empty.</h2>
+            <>
+              <h2>Your shopping list is currently empty.</h2>
+              <button onClick={addItem}>Add Item</button>
+            </>
           ) : (
             <ul>
               {snapshot.docs.map((doc, index) => (
