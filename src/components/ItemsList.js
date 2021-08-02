@@ -20,14 +20,18 @@ const ItemsList = () => {
     <div>
       {loading && <>Loading</>}
       {error && <>Error</>}
+      <h1>Collection:</h1>
       {snapshot && (
         <>
-          <h1>Collection:</h1>
-          <ul>
-            {snapshot.docs.map((doc, index) => (
-              <li key={index}>{doc.data().name}</li>
-            ))}
-          </ul>
+          {!snapshot.docs.length ? (
+            <h2>Your shopping list is currently empty.</h2>
+          ) : (
+            <ul>
+              {snapshot.docs.map((doc, index) => (
+                <li key={index}>{doc.data().name}</li>
+              ))}
+            </ul>
+          )}
         </>
       )}
       <button onClick={removeToken}>clear token</button> {/*See comment above*/}
