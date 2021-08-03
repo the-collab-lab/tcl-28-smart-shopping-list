@@ -9,8 +9,6 @@ const ItemsList = () => {
   );
   const history = useHistory();
 
-  // made this function just for testing purposes so it's easier to clear
-  // the token and go back to the home page
   const removeToken = () => {
     localStorage.removeItem('token');
     history.push('/');

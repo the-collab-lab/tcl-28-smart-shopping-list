@@ -44,6 +44,7 @@ const AddItem = () => {
         token,
         frequency,
         lastPurchasedDate,
+        isPurchased: false,
       };
 
       await firestore.collection('items').add(itemTemplate);
