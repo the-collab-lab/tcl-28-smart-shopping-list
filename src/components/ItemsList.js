@@ -27,7 +27,7 @@ const ItemsList = () => {
           ))}
         </>
       )}
-      <button onClick={removeToken}>clear token</button> {/*See comment above*/}
+      <button onClick={removeToken}>clear token</button>
     </div>
   );
 };
