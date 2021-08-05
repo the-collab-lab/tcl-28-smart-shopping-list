@@ -1,6 +1,7 @@
 import { firestore } from '../lib/firebase';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import { useHistory } from 'react-router';
+import SingleItem from './SingleItem';
 
 const ItemsList = () => {
   const token = localStorage.getItem('token');
@@ -31,15 +32,15 @@ const ItemsList = () => {
               <button onClick={addItem}>Add Item</button>
             </>
           ) : (
-            <ul>
+            <>
               {snapshot.docs.map((doc, index) => (
-                <li key={index}>{doc.data().name}</li>
+                <SingleItem key={index} {...doc.data()} id={doc.id} />
               ))}
-            </ul>
+            </>
           )}
         </>
       )}
-      <button onClick={removeToken}>clear token</button> {/*See comment above*/}
+      <button onClick={removeToken}>clear token</button>
     </div>
   );
 };
