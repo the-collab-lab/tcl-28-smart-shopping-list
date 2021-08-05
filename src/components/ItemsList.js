@@ -32,9 +32,11 @@ const ItemsList = () => {
               <button onClick={addItem}>Add Item</button>
             </>
           ) : (
+            <>
               {snapshot.docs.map((doc, index) => (
                 <SingleItem key={index} {...doc.data()} id={doc.id} />
               ))}
+            </>
           )}
         </>
       )}
