@@ -14,6 +14,14 @@ const SingleItem = (props) => {
     });
   };
 
+  setInterval(() => {
+    const todaysDate = Date.now();
+    const yesterday = todaysDate - 24 * 60 * 60 * 1000;
+    if (lastPurchasedDate < yesterday) {
+      updateIsPurchased(id);
+    }
+  }, 60000);
+
   useEffect(() => {
     const todaysDate = Date.now();
     const yesterday = todaysDate - 24 * 60 * 60 * 1000;
