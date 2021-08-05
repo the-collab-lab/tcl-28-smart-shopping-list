@@ -15,16 +15,27 @@ const ItemsList = () => {
     history.push('/');
   };
 
+  const addItem = () => {
+    history.push('/add');
+  };
+
   return (
     <div>
       {loading && <>Loading</>}
       {error && <>Error</>}
+      <h1>Collection:</h1>
       {snapshot && (
         <>
-          <h1>Collection:</h1>
-          {snapshot.docs.map((doc, index) => (
-            <SingleItem key={index} {...doc.data()} id={doc.id} />
-          ))}
+          {!snapshot.docs.length ? (
+            <>
+              <h2>Your shopping list is currently empty.</h2>
+              <button onClick={addItem}>Add Item</button>
+            </>
+          ) : (
+              {snapshot.docs.map((doc, index) => (
+                <SingleItem key={index} {...doc.data()} id={doc.id} />
+              ))}
+          )}
         </>
       )}
       <button onClick={removeToken}>clear token</button>
