@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { firestore } from '../lib/firebase';
 import { useHistory } from 'react-router-dom';
 
@@ -7,6 +7,11 @@ const AddItem = () => {
   const [frequency, setFrequency] = useState(0);
   const [lastPurchasedDate, setLastPurchasedDate] = useState(null);
   const history = useHistory();
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (!token) history.push('/');
+  });
 
   // get a reference to the Firestore document
   const handleClick = async (e) => {
