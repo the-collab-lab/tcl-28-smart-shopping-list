@@ -4,17 +4,21 @@ import { firestore } from '../lib/firebase';
 const SingleItem = (props) => {
   const { name, isPurchased, id, token, frequency, lastPurchasedDate } = props;
 
-  useEffect(async () => {
+  const updateIsPurchased = async (id) => {
+    await firestore.collection('items').doc(id).set({
+      isPurchased: false,
+      lastPurchasedDate,
+      token,
+      name,
+      frequency,
+    });
+  };
+
+  useEffect(() => {
     const todaysDate = Date.now();
     const yesterday = todaysDate - 24 * 60 * 60 * 1000;
     if (lastPurchasedDate < yesterday) {
-      await firestore.collection('items').doc(id).set({
-        isPurchased: false,
-        lastPurchasedDate,
-        token,
-        name,
-        frequency,
-      });
+      updateIsPurchased(id);
     }
   });
 
