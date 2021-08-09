@@ -31,6 +31,8 @@ const SingleItem = (props) => {
   });
 
   const handleChange = async (e) => {
+    // maybe calculate estimate here
+    
     await firestore
       .collection('items')
       .doc(id)

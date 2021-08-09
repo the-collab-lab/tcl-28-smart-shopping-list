@@ -49,6 +49,8 @@ const AddItem = () => {
         token,
         frequency,
         lastPurchasedDate,
+        numberOfPurchases,
+        previousEstimate,
         isPurchased: false,
       };
 
