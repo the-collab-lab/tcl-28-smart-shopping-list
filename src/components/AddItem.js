@@ -49,10 +49,10 @@ const AddItem = () => {
         token,
         frequency,
         lastPurchasedDate,
-        numberOfPurchases,
-        previousEstimate,
-        daysUntilPurchase,
         isPurchased: false,
+        numberOfPurchases: 0,
+        previousEstimate: null,
+        daysUntilPurchase: null,
       };
 
       await firestore.collection('items').add(itemTemplate);

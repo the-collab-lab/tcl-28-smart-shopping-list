@@ -2,7 +2,17 @@ import React, { useEffect } from 'react';
 import { firestore } from '../lib/firebase';
 
 const SingleItem = (props) => {
-  const { name, isPurchased, id, token, frequency, lastPurchasedDate } = props;
+  const {
+    name,
+    isPurchased,
+    id,
+    token,
+    frequency,
+    lastPurchasedDate,
+    numberOfPurchases,
+    previousEstimate,
+    daysUntilPurchase,
+  } = props;
 
   const updateIsPurchased = async (id) => {
     await firestore.collection('items').doc(id).set({
@@ -32,7 +42,6 @@ const SingleItem = (props) => {
 
   const handleChange = async (e) => {
     // maybe calculate estimate here
-    
     await firestore
       .collection('items')
       .doc(id)
