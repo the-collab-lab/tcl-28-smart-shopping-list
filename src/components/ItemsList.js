@@ -34,11 +34,7 @@ const ItemsList = () => {
         value={search}
         onChange={(e) => setSearch(e.target.value)}
       />
-      {search && (
-        <button onClick={() => setSearch('')} aria-hidden="true">
-          X
-        </button>
-      )}
+      {search && <button onClick={() => setSearch('')}>X</button>}
       {snapshot && (
         <>
           {!snapshot.docs.length ? (
@@ -48,9 +44,13 @@ const ItemsList = () => {
             </>
           ) : (
             <>
-              {snapshot.docs.map((doc, index) => (
-                <SingleItem key={index} {...doc.data()} id={doc.id} />
-              ))}
+              {snapshot.docs
+                .filter((doc) =>
+                  doc.data().name.toLowerCase().includes(search.toLowerCase()),
+                )
+                .map((doc, index) => (
+                  <SingleItem key={index} {...doc.data()} id={doc.id} />
+                ))}
             </>
           )}
         </>
