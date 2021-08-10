@@ -26,7 +26,7 @@ const SingleItem = (props) => {
     if (lastPurchasedDate && lastPurchasedDate < yesterday) {
       updateIsPurchased(id);
     }
-  }, 10000);
+  }, 60000);
 
   useEffect(() => {
     const todaysDate = Date.now();
