@@ -18,28 +18,32 @@ const SingleItem = (props) => {
   const mlsPerDay = 86400000;
 
   const updateIsPurchased = async (id) => {
-    await firestore.collection('items').doc(id).set({
+    await firestore.collection('items').doc(id).update({
       isPurchased: false,
-      lastPurchasedDate,
-      token,
-      name,
-      frequency,
+      // lastPurchasedDate,
+      // token,
+      // name,
+      // frequency,
+      // numberOfPurchases,
+      // previousEstimate,
+      // daysUntilPurchase,
     });
   };
 
   setInterval(() => {
     const todaysDate = Date.now();
     const yesterday = todaysDate - 24 * 60 * 60 * 1000;
-    if (lastPurchasedDate < yesterday) {
+    console.log('lastPurchasedDate', lastPurchasedDate);
+    console.log('yesterday', yesterday);
+    if (lastPurchasedDate && lastPurchasedDate < yesterday) {
       updateIsPurchased(id);
     }
-  }, 60000);
+  }, 10000);
 
   useEffect(() => {
-    console.log(name, frequency);
     const todaysDate = Date.now();
     const yesterday = todaysDate - 24 * 60 * 60 * 1000;
-    if (lastPurchasedDate < yesterday) {
+    if (lastPurchasedDate && lastPurchasedDate < yesterday) {
       updateIsPurchased(id);
     }
   });
@@ -52,7 +56,7 @@ const SingleItem = (props) => {
 
   const handleChange = async (e) => {
     let nextPurchaseDate = calculateEstimate(
-      previousEstimate,
+      daysUntilPurchase,
       latestInterval,
       numberOfPurchases + 1,
     );

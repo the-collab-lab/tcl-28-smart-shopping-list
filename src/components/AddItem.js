@@ -51,7 +51,6 @@ const AddItem = () => {
         lastPurchasedDate,
         isPurchased: false,
         numberOfPurchases: 0,
-        previousEstimate: null,
         daysUntilPurchase: null,
       };
 
