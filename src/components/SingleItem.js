@@ -23,8 +23,6 @@ const SingleItem = (props) => {
   setInterval(() => {
     const todaysDate = Date.now();
     const yesterday = todaysDate - 24 * 60 * 60 * 1000;
-    console.log('lastPurchasedDate', lastPurchasedDate);
-    console.log('yesterday', yesterday);
     if (lastPurchasedDate && lastPurchasedDate < yesterday) {
       updateIsPurchased(id);
     }
