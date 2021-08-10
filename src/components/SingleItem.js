@@ -7,11 +7,8 @@ const SingleItem = (props) => {
     name,
     isPurchased,
     id,
-    token,
-    frequency,
     lastPurchasedDate,
     numberOfPurchases,
-    previousEstimate,
     daysUntilPurchase,
   } = props;
 
@@ -20,13 +17,6 @@ const SingleItem = (props) => {
   const updateIsPurchased = async (id) => {
     await firestore.collection('items').doc(id).update({
       isPurchased: false,
-      // lastPurchasedDate,
-      // token,
-      // name,
-      // frequency,
-      // numberOfPurchases,
-      // previousEstimate,
-      // daysUntilPurchase,
     });
   };
 
@@ -65,19 +55,11 @@ const SingleItem = (props) => {
       .collection('items')
       .doc(id)
       .update({
-        // tried .update() instead of .set()
         isPurchased: !isPurchased,
         lastPurchasedDate: !isPurchased ? Date.now() : lastPurchasedDate,
         numberOfPurchases: numberOfPurchases + 1,
         daysUntilPurchase: nextPurchaseDate,
       });
-    // .set({
-    //     isPurchased: !isPurchased,
-    //     lastPurchasedDate: !isPurchased ? Date.now() : lastPurchasedDate,
-    //     token,
-    //     name,
-    //     frequency,
-    //   });
   };
 
   return (
