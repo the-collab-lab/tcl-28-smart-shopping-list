@@ -12,7 +12,7 @@ const SingleItem = (props) => {
     daysUntilPurchase,
   } = props;
 
-  const mlsPerDay = 86400000;
+  const mlsPerDay = 24 * 60 * 60 * 1000;
 
   const updateIsPurchased = async (id) => {
     await firestore.collection('items').doc(id).update({
@@ -22,7 +22,7 @@ const SingleItem = (props) => {
 
   setInterval(() => {
     const todaysDate = Date.now();
-    const yesterday = todaysDate - 24 * 60 * 60 * 1000;
+    const yesterday = todaysDate - mlsPerDay;
     if (lastPurchasedDate && lastPurchasedDate < yesterday) {
       updateIsPurchased(id);
     }
@@ -30,7 +30,7 @@ const SingleItem = (props) => {
 
   useEffect(() => {
     const todaysDate = Date.now();
-    const yesterday = todaysDate - 24 * 60 * 60 * 1000;
+    const yesterday = todaysDate - mlsPerDay;
     if (lastPurchasedDate && lastPurchasedDate < yesterday) {
       updateIsPurchased(id);
     }
