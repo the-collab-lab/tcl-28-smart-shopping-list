@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { firestore } from '../lib/firebase';
+import calculateEstimate from '../lib/estimates';
 
 const SingleItem = (props) => {
   const {
@@ -13,6 +14,8 @@ const SingleItem = (props) => {
     previousEstimate,
     daysUntilPurchase,
   } = props;
+
+  const mlsPerDay = 86400000;
 
   const updateIsPurchased = async (id) => {
     await firestore.collection('items').doc(id).set({
@@ -33,6 +36,7 @@ const SingleItem = (props) => {
   }, 60000);
 
   useEffect(() => {
+    console.log(name, frequency);
     const todaysDate = Date.now();
     const yesterday = todaysDate - 24 * 60 * 60 * 1000;
     if (lastPurchasedDate < yesterday) {
@@ -40,18 +44,36 @@ const SingleItem = (props) => {
     }
   });
 
+  let latestInterval = 0;
+
+  if (lastPurchasedDate) {
+    latestInterval = Math.round((Date.now() - lastPurchasedDate) / mlsPerDay);
+  }
+
   const handleChange = async (e) => {
-    // maybe calculate estimate here
+    let nextPurchaseDate = calculateEstimate(
+      previousEstimate,
+      latestInterval,
+      numberOfPurchases + 1,
+    );
+
     await firestore
       .collection('items')
       .doc(id)
-      .set({
+      .update({
+        // tried .update() instead of .set()
         isPurchased: !isPurchased,
         lastPurchasedDate: !isPurchased ? Date.now() : lastPurchasedDate,
-        token,
-        name,
-        frequency,
+        numberOfPurchases: numberOfPurchases + 1,
+        daysUntilPurchase: nextPurchaseDate,
       });
+    // .set({
+    //     isPurchased: !isPurchased,
+    //     lastPurchasedDate: !isPurchased ? Date.now() : lastPurchasedDate,
+    //     token,
+    //     name,
+    //     frequency,
+    //   });
   };
 
   return (
