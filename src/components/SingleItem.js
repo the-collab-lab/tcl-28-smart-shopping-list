@@ -59,7 +59,9 @@ const SingleItem = (props) => {
         numberOfPurchases: !isPurchased
           ? numberOfPurchases + 1
           : numberOfPurchases,
-        daysUntilPurchase: nextPurchaseDate,
+        daysUntilPurchase: e.target.checked
+          ? nextPurchaseDate
+          : daysUntilPurchase,
       });
   };
 
