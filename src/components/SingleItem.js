@@ -7,6 +7,7 @@ const SingleItem = (props) => {
     name,
     isPurchased,
     id,
+    frequency,
     lastPurchasedDate,
     numberOfPurchases,
     daysUntilPurchase,
@@ -36,18 +37,21 @@ const SingleItem = (props) => {
     }
   });
 
-  let latestInterval = 0;
+  let latestInterval = frequency;
 
   if (lastPurchasedDate) {
     latestInterval = Math.round((Date.now() - lastPurchasedDate) / mlsPerDay);
   }
 
   const handleChange = async (e) => {
-    let nextPurchaseDate = calculateEstimate(
-      daysUntilPurchase,
-      latestInterval,
-      numberOfPurchases + 1,
-    );
+    let nextPurchaseDate;
+    if (e.target.checked) {
+      nextPurchaseDate = calculateEstimate(
+        daysUntilPurchase,
+        latestInterval,
+        numberOfPurchases + 1,
+      );
+    }
 
     await firestore
       .collection('items')
@@ -55,8 +59,10 @@ const SingleItem = (props) => {
       .update({
         isPurchased: !isPurchased,
         lastPurchasedDate: !isPurchased ? Date.now() : lastPurchasedDate,
-        numberOfPurchases: numberOfPurchases + 1,
-        daysUntilPurchase: nextPurchaseDate,
+        numberOfPurchases: !isPurchased
+          ? numberOfPurchases + 1
+          : numberOfPurchases,
+        daysUntilPurchase: nextPurchaseDate || daysUntilPurchase,
       });
   };
 
