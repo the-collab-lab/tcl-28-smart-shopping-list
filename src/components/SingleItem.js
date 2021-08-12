@@ -44,11 +44,14 @@ const SingleItem = (props) => {
   }
 
   const handleChange = async (e) => {
-    let nextPurchaseDate = calculateEstimate(
-      daysUntilPurchase,
-      latestInterval,
-      numberOfPurchases + 1,
-    );
+    let nextPurchaseDate;
+    if (e.target.checked) {
+      nextPurchaseDate = calculateEstimate(
+        daysUntilPurchase,
+        latestInterval,
+        numberOfPurchases + 1,
+      );
+    }
 
     await firestore
       .collection('items')
@@ -59,9 +62,7 @@ const SingleItem = (props) => {
         numberOfPurchases: !isPurchased
           ? numberOfPurchases + 1
           : numberOfPurchases,
-        daysUntilPurchase: e.target.checked
-          ? nextPurchaseDate
-          : daysUntilPurchase,
+        daysUntilPurchase: nextPurchaseDate || daysUntilPurchase,
       });
   };
 
