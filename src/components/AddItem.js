@@ -5,7 +5,6 @@ import { useHistory } from 'react-router-dom';
 const AddItem = () => {
   const [item, setItem] = useState('');
   const [frequency, setFrequency] = useState(0);
-  const [lastPurchasedDate, setLastPurchasedDate] = useState(null);
   const history = useHistory();
 
   useEffect(() => {
@@ -48,7 +47,7 @@ const AddItem = () => {
         name: item,
         token,
         frequency,
-        lastPurchasedDate,
+        lastPurchasedDate: null,
         isPurchased: false,
       };
 
