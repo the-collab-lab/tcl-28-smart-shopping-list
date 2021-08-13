@@ -37,7 +37,7 @@ const SingleItem = (props) => {
     }
   });
 
-  let latestInterval = frequency;
+  let latestInterval = Number(frequency);
 
   if (lastPurchasedDate) {
     latestInterval = Math.round((Date.now() - lastPurchasedDate) / mlsPerDay);

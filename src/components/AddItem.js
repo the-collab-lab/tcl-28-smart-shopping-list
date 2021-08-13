@@ -65,7 +65,7 @@ const AddItem = () => {
     if (e.target.name === 'item') {
       setItem(e.target.value);
     } else if (e.target.name === 'frequency') {
-      setFrequency(e.target.value);
+      setFrequency(Number(e.target.value));
     }
   };
 
