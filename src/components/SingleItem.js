@@ -60,7 +60,7 @@ const SingleItem = (props) => {
         isPurchased: !isPurchased,
         lastPurchasedDate: !isPurchased ? Date.now() : lastPurchasedDate,
         numberOfPurchases: !isPurchased
-          ? numberOfPurchases + 1
+          ? numberOfPurchases + 1 || 1
           : numberOfPurchases,
         daysUntilPurchase: nextPurchaseDate || daysUntilPurchase,
       });
