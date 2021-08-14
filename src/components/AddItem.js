@@ -49,6 +49,8 @@ const AddItem = () => {
         frequency,
         lastPurchasedDate: null,
         isPurchased: false,
+        numberOfPurchases: 0,
+        daysUntilPurchase: null,
       };
 
       await firestore.collection('items').add(itemTemplate);
@@ -62,7 +64,7 @@ const AddItem = () => {
     if (e.target.name === 'item') {
       setItem(e.target.value);
     } else if (e.target.name === 'frequency') {
-      setFrequency(e.target.value);
+      setFrequency(Number(e.target.value));
     }
   };
 

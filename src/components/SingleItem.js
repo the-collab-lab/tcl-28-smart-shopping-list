@@ -1,45 +1,68 @@
 import React, { useEffect } from 'react';
 import { firestore } from '../lib/firebase';
+import calculateEstimate from '../lib/estimates';
 
 const SingleItem = (props) => {
-  const { name, isPurchased, id, token, frequency, lastPurchasedDate } = props;
+  const {
+    name,
+    isPurchased,
+    id,
+    frequency,
+    lastPurchasedDate,
+    numberOfPurchases,
+    daysUntilPurchase,
+  } = props;
+
+  const mlsPerDay = 24 * 60 * 60 * 1000;
 
   const updateIsPurchased = async (id) => {
-    await firestore.collection('items').doc(id).set({
+    await firestore.collection('items').doc(id).update({
       isPurchased: false,
-      lastPurchasedDate,
-      token,
-      name,
-      frequency,
     });
   };
 
   setInterval(() => {
     const todaysDate = Date.now();
-    const yesterday = todaysDate - 24 * 60 * 60 * 1000;
-    if (lastPurchasedDate < yesterday) {
+    const yesterday = todaysDate - mlsPerDay;
+    if (lastPurchasedDate && lastPurchasedDate < yesterday) {
       updateIsPurchased(id);
     }
   }, 60000);
 
   useEffect(() => {
     const todaysDate = Date.now();
-    const yesterday = todaysDate - 24 * 60 * 60 * 1000;
-    if (lastPurchasedDate < yesterday) {
+    const yesterday = todaysDate - mlsPerDay;
+    if (lastPurchasedDate && lastPurchasedDate < yesterday) {
       updateIsPurchased(id);
     }
   });
 
+  let latestInterval = Number(frequency);
+
+  if (lastPurchasedDate) {
+    latestInterval = Math.round((Date.now() - lastPurchasedDate) / mlsPerDay);
+  }
+
   const handleChange = async (e) => {
+    let nextPurchaseDate;
+    if (e.target.checked) {
+      nextPurchaseDate = calculateEstimate(
+        daysUntilPurchase,
+        latestInterval,
+        numberOfPurchases + 1,
+      );
+    }
+
     await firestore
       .collection('items')
       .doc(id)
-      .set({
+      .update({
         isPurchased: !isPurchased,
         lastPurchasedDate: !isPurchased ? Date.now() : lastPurchasedDate,
-        token,
-        name,
-        frequency,
+        numberOfPurchases: !isPurchased
+          ? numberOfPurchases + 1 || 1
+          : numberOfPurchases,
+        daysUntilPurchase: nextPurchaseDate || daysUntilPurchase,
       });
   };
 
