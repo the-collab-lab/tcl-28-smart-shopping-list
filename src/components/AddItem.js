@@ -50,7 +50,7 @@ const AddItem = () => {
         lastPurchasedDate: null,
         isPurchased: false,
         numberOfPurchases: 0,
-        daysUntilPurchase: null,
+        daysUntilPurchase: 0,
       };
 
       await firestore.collection('items').add(itemTemplate);

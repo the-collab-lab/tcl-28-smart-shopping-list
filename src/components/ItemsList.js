@@ -7,9 +7,14 @@ import { useState } from 'react';
 const ItemsList = () => {
   const token = localStorage.getItem('token');
   const [search, setSearch] = useState('');
+
   const [snapshot, loading, error] = useCollection(
-    firestore.collection('items').where('token', '==', token),
+    firestore
+      .collection('items')
+      .where('token', '==', token)
+      .orderBy('frequency'),
   );
+
   const history = useHistory();
 
   const removeToken = () => {
