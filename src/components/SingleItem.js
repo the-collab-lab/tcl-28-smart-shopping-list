@@ -75,7 +75,7 @@ const SingleItem = (props) => {
           checked={isPurchased}
           onChange={handleChange}
         />
-        {name}
+        {name} - {daysUntilPurchase}
       </label>
     </div>
   );

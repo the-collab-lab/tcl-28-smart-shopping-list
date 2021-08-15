@@ -2,15 +2,30 @@ import { firestore } from '../lib/firebase';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import { useHistory } from 'react-router';
 import SingleItem from './SingleItem';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const ItemsList = () => {
+  const history = useHistory();
   const token = localStorage.getItem('token');
   const [search, setSearch] = useState('');
-  const [snapshot, loading, error] = useCollection(
-    firestore.collection('items').where('token', '==', token),
-  );
-  const history = useHistory();
+  const [sortedItems, setSortedItems] = useState([]);
+
+  useEffect(() => {
+    getItems();
+  }, []);
+
+  // Get items by token and sort them in ascending order by daysUntilPurchase
+  const getItems = async () => {
+    await firestore
+      .collection('items')
+      .where('token', '==', token)
+      .orderBy('daysUntilPurchase', 'asc')
+      .get()
+      .then((data) => {
+        setSortedItems(data.docs);
+      })
+      .catch((err) => console.error(err));
+  };
 
   const removeToken = () => {
     localStorage.removeItem('token');
@@ -23,8 +38,6 @@ const ItemsList = () => {
 
   return (
     <div>
-      {loading && <>Loading</>}
-      {error && <>Error</>}
       <h1>Collection:</h1>
       <label htmlFor="search">Filter Items</label>
       <input
@@ -35,16 +48,16 @@ const ItemsList = () => {
         onChange={(e) => setSearch(e.target.value)}
       />
       {search && <button onClick={() => setSearch('')}>X</button>}
-      {snapshot && (
+      {sortedItems && (
         <>
-          {!snapshot.docs.length ? (
+          {!sortedItems.length ? (
             <>
               <h2>Your shopping list is currently empty.</h2>
               <button onClick={addItem}>Add Item</button>
             </>
           ) : (
             <>
-              {snapshot.docs
+              {sortedItems
                 .filter((doc) =>
                   doc.data().name.toLowerCase().includes(search.toLowerCase()),
                 )
