@@ -66,6 +66,12 @@ const SingleItem = (props) => {
       });
   };
 
+  const handleDelete = async (e) => {
+    if (window.confirm(`Do you really want to delete ${name}?`)) {
+      await firestore.collection('items').doc(id).delete();
+    }
+  };
+
   return (
     <div>
       <label htmlFor={name}>
@@ -77,6 +83,7 @@ const SingleItem = (props) => {
         />
         {name}
       </label>
+      <button onClick={handleDelete}>Delete</button>
     </div>
   );
 };
