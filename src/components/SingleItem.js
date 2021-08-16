@@ -11,6 +11,7 @@ const SingleItem = (props) => {
     lastPurchasedDate,
     numberOfPurchases,
     daysUntilPurchase,
+    styles,
   } = props;
 
   const mlsPerDay = 24 * 60 * 60 * 1000;
@@ -67,7 +68,7 @@ const SingleItem = (props) => {
   };
 
   return (
-    <div>
+    <div style={{ backgrundColor: styles }}>
       <label htmlFor={name}>
         <input
           type="checkbox"
@@ -75,7 +76,7 @@ const SingleItem = (props) => {
           checked={isPurchased}
           onChange={handleChange}
         />
-        {name}
+        {name} - {daysUntilPurchase}
       </label>
     </div>
   );

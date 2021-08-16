@@ -5,6 +5,7 @@ import SingleItem from './SingleItem';
 import { useState } from 'react';
 
 const ItemsList = () => {
+  const history = useHistory();
   const token = localStorage.getItem('token');
   const [search, setSearch] = useState('');
 
@@ -12,10 +13,15 @@ const ItemsList = () => {
     firestore
       .collection('items')
       .where('token', '==', token)
-      .orderBy('frequency'),
+      .orderBy('daysUntilPurchase', 'asc'),
   );
 
-  const history = useHistory();
+  const styles = {
+    soon: 'green',
+    kindOfSoon: 'orange',
+    notSoSoon: 'red',
+    inactive: 'gray',
+  };
 
   const removeToken = () => {
     localStorage.removeItem('token');
@@ -25,6 +31,21 @@ const ItemsList = () => {
   const addItem = () => {
     history.push('/add');
   };
+
+  // snapshot.docs.map((item) => {
+  //   if (item.data().daysUntilPurchase <= 7) {
+  //     return 'soon';
+  //   } else if (
+  //     item.data().daysUntilPurchase > 7 &&
+  //     item.data().daysUntilPurchase <= 30
+  //   ) {
+  //     return 'kindOfSoon';
+  //   } else if (item.data().daysUntilPurchase > 30) {
+  //     return 'notSoSoon';
+  //   } else {
+  //     return 'inactive';
+  //   }
+  // });
 
   return (
     <div>
@@ -53,9 +74,48 @@ const ItemsList = () => {
                 .filter((doc) =>
                   doc.data().name.toLowerCase().includes(search.toLowerCase()),
                 )
-                .map((doc, index) => (
-                  <SingleItem key={index} {...doc.data()} id={doc.id} />
-                ))}
+                .map((doc, index) => {
+                  if (doc.data().daysUntilPurchase <= 7) {
+                    return (
+                      <SingleItem
+                        key={index}
+                        {...doc.data()}
+                        id={doc.id}
+                        styles={styles.soon}
+                      />
+                    );
+                  } else if (
+                    doc.data().daysUntilPurchase > 7 &&
+                    doc.data().daysUntilPurchase <= 30
+                  ) {
+                    return (
+                      <SingleItem
+                        key={index}
+                        {...doc.data()}
+                        id={doc.id}
+                        styles={styles.kindOfSoon}
+                      />
+                    );
+                  } else if (doc.data().daysUntilPurchase > 30) {
+                    return (
+                      <SingleItem
+                        key={index}
+                        {...doc.data()}
+                        id={doc.id}
+                        styles={styles.notSoSoon}
+                      />
+                    );
+                  } else {
+                    return (
+                      <SingleItem
+                        key={index}
+                        {...doc.data()}
+                        id={doc.id}
+                        styles={styles.inactive}
+                      />
+                    );
+                  }
+                })}
             </>
           )}
         </>
