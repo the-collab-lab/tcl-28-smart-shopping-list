@@ -5,12 +5,15 @@ import SingleItem from './SingleItem';
 import { useState } from 'react';
 
 const ItemsList = () => {
+  const history = useHistory();
   const token = localStorage.getItem('token');
   const [search, setSearch] = useState('');
   const [snapshot, loading, error] = useCollection(
-    firestore.collection('items').where('token', '==', token),
+    firestore
+      .collection('items')
+      .where('token', '==', token)
+      .orderBy('daysUntilPurchase', 'asc'),
   );
-  const history = useHistory();
 
   const removeToken = () => {
     localStorage.removeItem('token');
