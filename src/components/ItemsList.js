@@ -2,30 +2,18 @@ import { firestore } from '../lib/firebase';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import { useHistory } from 'react-router';
 import SingleItem from './SingleItem';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 const ItemsList = () => {
   const history = useHistory();
   const token = localStorage.getItem('token');
   const [search, setSearch] = useState('');
-  const [sortedItems, setSortedItems] = useState([]);
-
-  useEffect(() => {
-    getItems();
-  }, []);
-
-  // Get items by token and sort them in ascending order by daysUntilPurchase
-  const getItems = async () => {
-    await firestore
+  const [snapshot, loading, error] = useCollection(
+    firestore
       .collection('items')
       .where('token', '==', token)
-      .orderBy('daysUntilPurchase', 'asc')
-      .get()
-      .then((data) => {
-        setSortedItems(data.docs);
-      })
-      .catch((err) => console.error(err));
-  };
+      .orderBy('daysUntilPurchase', 'asc'),
+  );
 
   const removeToken = () => {
     localStorage.removeItem('token');
@@ -38,6 +26,8 @@ const ItemsList = () => {
 
   return (
     <div>
+      {loading && <>Loading</>}
+      {error && <>Error</>}
       <h1>Collection:</h1>
       <label htmlFor="search">Filter Items</label>
       <input
@@ -48,16 +38,16 @@ const ItemsList = () => {
         onChange={(e) => setSearch(e.target.value)}
       />
       {search && <button onClick={() => setSearch('')}>X</button>}
-      {sortedItems && (
+      {snapshot && (
         <>
-          {!sortedItems.length ? (
+          {!snapshot.docs.length ? (
             <>
               <h2>Your shopping list is currently empty.</h2>
               <button onClick={addItem}>Add Item</button>
             </>
           ) : (
             <>
-              {sortedItems
+              {snapshot.docs
                 .filter((doc) =>
                   doc.data().name.toLowerCase().includes(search.toLowerCase()),
                 )
