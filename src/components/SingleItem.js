@@ -68,7 +68,7 @@ const SingleItem = (props) => {
   };
 
   return (
-    <div style={{ backgrundColor: styles }}>
+    <div style={{ backgroundColor: styles }}>
       <label htmlFor={name}>
         <input
           type="checkbox"
