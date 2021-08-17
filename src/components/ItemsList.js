@@ -32,21 +32,6 @@ const ItemsList = () => {
     history.push('/add');
   };
 
-  // snapshot.docs.map((item) => {
-  //   if (item.data().daysUntilPurchase <= 7) {
-  //     return 'soon';
-  //   } else if (
-  //     item.data().daysUntilPurchase > 7 &&
-  //     item.data().daysUntilPurchase <= 30
-  //   ) {
-  //     return 'kindOfSoon';
-  //   } else if (item.data().daysUntilPurchase > 30) {
-  //     return 'notSoSoon';
-  //   } else {
-  //     return 'inactive';
-  //   }
-  // });
-
   return (
     <div>
       {loading && <>Loading</>}

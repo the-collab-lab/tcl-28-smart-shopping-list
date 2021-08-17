@@ -25,3 +25,19 @@ code {
 .active-link {
   font-weight: bold;
 }
+
+.soon {
+  background-color: green;
+}
+
+.kindOfSoon {
+  background-color: orange;
+}
+
+.notSoSoon {
+  background-color: red;
+}
+
+.inactive {
+  background-color: gray;
+}
