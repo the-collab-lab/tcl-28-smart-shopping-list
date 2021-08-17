@@ -86,7 +86,7 @@ const ItemsList = () => {
                     );
                   } else if (
                     doc.data().daysUntilPurchase > 7 &&
-                    doc.data().daysUntilPurchase <= 30
+                    doc.data().daysUntilPurchase < 30
                   ) {
                     return (
                       <SingleItem
@@ -96,7 +96,7 @@ const ItemsList = () => {
                         styles={styles.kindOfSoon}
                       />
                     );
-                  } else if (doc.data().daysUntilPurchase > 30) {
+                  } else if (doc.data().daysUntilPurchase >= 30) {
                     return (
                       <SingleItem
                         key={index}

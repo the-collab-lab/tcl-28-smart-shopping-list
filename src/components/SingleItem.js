@@ -16,6 +16,22 @@ const SingleItem = (props) => {
 
   const mlsPerDay = 24 * 60 * 60 * 1000;
 
+  const daysPassedSincePurchase = Math.round(
+    (Date.now() - lastPurchasedDate) / mlsPerDay,
+  );
+
+  // let bgColor
+  // if(daysPassedSincePurchase <= 7) {
+  //   bgColor = 'green';
+  // } else if(daysPassedSincePurchase > 7 &&
+  // daysPassedSincePurchase < 30) {
+  //   bgColor = 'orange';
+  // } else if(daysPassedSincePurchase >= 30) {
+  //   bgColor = 'red';
+  // } else {
+  //   bgColor = 'gray';
+  // }
+
   const updateIsPurchased = async (id) => {
     await firestore.collection('items').doc(id).update({
       isPurchased: false,
@@ -68,7 +84,7 @@ const SingleItem = (props) => {
   };
 
   return (
-    <div style={{ backgrundColor: styles }}>
+    <div style={{ backgroundColor: styles }}>
       <label htmlFor={name}>
         <input
           type="checkbox"
