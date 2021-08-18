@@ -15,10 +15,6 @@ const SingleItem = (props) => {
 
   const mlsPerDay = 24 * 60 * 60 * 1000;
 
-  // const daysPassedSincePurchase = Math.round(
-  //   (Date.now() - lastPurchasedDate) / mlsPerDay,
-  // );
-
   let bgColor;
   let aria;
   if (daysUntilPurchase <= 7) {

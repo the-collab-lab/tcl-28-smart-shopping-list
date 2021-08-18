@@ -13,8 +13,8 @@ const ItemsList = () => {
     firestore
       .collection('items')
       .where('token', '==', token)
-      .orderBy('daysUntilPurchase', 'asc'),
-    // .orderBy('name', 'asc'),
+      .orderBy('daysUntilPurchase', 'asc')
+      .orderBy('name', 'asc'),
   );
 
   const removeToken = () => {
@@ -52,12 +52,6 @@ const ItemsList = () => {
               {snapshot.docs
                 .filter((doc) =>
                   doc.data().name.toLowerCase().includes(search.toLowerCase()),
-                )
-                .sort((a, b) =>
-                  a
-                    .data()
-                    .name.toLowerCase()
-                    .localeCompare(b.data().name.toLowerCase()),
                 )
                 .map((doc, index) => (
                   <SingleItem key={index} {...doc.data()} id={doc.id} />
