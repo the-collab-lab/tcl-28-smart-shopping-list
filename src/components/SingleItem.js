@@ -15,22 +15,22 @@ const SingleItem = (props) => {
 
   const mlsPerDay = 24 * 60 * 60 * 1000;
 
-  const daysPassedSincePurchase = Math.round(
-    (Date.now() - lastPurchasedDate) / mlsPerDay,
-  );
+  // const daysPassedSincePurchase = Math.round(
+  //   (Date.now() - lastPurchasedDate) / mlsPerDay,
+  // );
 
   let bgColor;
   let aria;
-  if (daysPassedSincePurchase <= daysUntilPurchase) {
+  if (daysUntilPurchase <= 7) {
     bgColor = 'green';
     aria = 'buy soon';
-  } else if (daysPassedSincePurchase > 7 && daysPassedSincePurchase < 30) {
+  } else if (daysUntilPurchase > 7 && daysUntilPurchase < 30) {
     bgColor = 'orange';
     aria = 'buy kind of soon';
-  } else if (daysPassedSincePurchase > 30 && daysPassedSincePurchase < 40) {
+  } else if (daysUntilPurchase > 30 && daysUntilPurchase < 40) {
     bgColor = 'red';
     aria = 'wait a while before buying';
-  } else if (daysPassedSincePurchase >= 40) {
+  } else {
     bgColor = 'gray';
     aria = "you haven't bought this in a long time";
   }
@@ -88,7 +88,7 @@ const SingleItem = (props) => {
 
   return (
     <div style={{ backgroundColor: bgColor }}>
-      <label htmlFor={name} aria-checked={isPurchased}>
+      <label htmlFor={name} aria-checked={isPurchased} aria-label={aria}>
         <input
           type="checkbox"
           id={name}
