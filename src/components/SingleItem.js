@@ -11,7 +11,6 @@ const SingleItem = (props) => {
     lastPurchasedDate,
     numberOfPurchases,
     daysUntilPurchase,
-    styles,
   } = props;
 
   const mlsPerDay = 24 * 60 * 60 * 1000;
@@ -20,17 +19,16 @@ const SingleItem = (props) => {
     (Date.now() - lastPurchasedDate) / mlsPerDay,
   );
 
-  // let bgColor
-  // if(daysPassedSincePurchase <= 7) {
-  //   bgColor = 'green';
-  // } else if(daysPassedSincePurchase > 7 &&
-  // daysPassedSincePurchase < 30) {
-  //   bgColor = 'orange';
-  // } else if(daysPassedSincePurchase >= 30) {
-  //   bgColor = 'red';
-  // } else {
-  //   bgColor = 'gray';
-  // }
+  let bgColor;
+  if (daysPassedSincePurchase <= daysUntilPurchase) {
+    bgColor = 'green';
+  } else if (daysPassedSincePurchase > 7 && daysPassedSincePurchase < 30) {
+    bgColor = 'orange';
+  } else if (daysPassedSincePurchase > 30 && daysPassedSincePurchase < 40) {
+    bgColor = 'red';
+  } else if (daysPassedSincePurchase >= 40) {
+    bgColor = 'gray';
+  }
 
   const updateIsPurchased = async (id) => {
     await firestore.collection('items').doc(id).update({
@@ -84,7 +82,7 @@ const SingleItem = (props) => {
   };
 
   return (
-    <div style={{ backgroundColor: styles }}>
+    <div style={{ backgroundColor: bgColor }}>
       <label htmlFor={name}>
         <input
           type="checkbox"

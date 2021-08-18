@@ -16,13 +16,6 @@ const ItemsList = () => {
       .orderBy('daysUntilPurchase', 'asc'),
   );
 
-  const styles = {
-    soon: 'green',
-    kindOfSoon: 'orange',
-    notSoSoon: 'red',
-    inactive: 'gray',
-  };
-
   const removeToken = () => {
     localStorage.removeItem('token');
     history.push('/');
@@ -59,48 +52,9 @@ const ItemsList = () => {
                 .filter((doc) =>
                   doc.data().name.toLowerCase().includes(search.toLowerCase()),
                 )
-                .map((doc, index) => {
-                  if (doc.data().daysUntilPurchase <= 7) {
-                    return (
-                      <SingleItem
-                        key={index}
-                        {...doc.data()}
-                        id={doc.id}
-                        styles={styles.soon}
-                      />
-                    );
-                  } else if (
-                    doc.data().daysUntilPurchase > 7 &&
-                    doc.data().daysUntilPurchase < 30
-                  ) {
-                    return (
-                      <SingleItem
-                        key={index}
-                        {...doc.data()}
-                        id={doc.id}
-                        styles={styles.kindOfSoon}
-                      />
-                    );
-                  } else if (doc.data().daysUntilPurchase >= 30) {
-                    return (
-                      <SingleItem
-                        key={index}
-                        {...doc.data()}
-                        id={doc.id}
-                        styles={styles.notSoSoon}
-                      />
-                    );
-                  } else {
-                    return (
-                      <SingleItem
-                        key={index}
-                        {...doc.data()}
-                        id={doc.id}
-                        styles={styles.inactive}
-                      />
-                    );
-                  }
-                })}
+                .map((doc, index) => (
+                  <SingleItem key={index} {...doc.data()} id={doc.id} />
+                ))}
             </>
           )}
         </>
