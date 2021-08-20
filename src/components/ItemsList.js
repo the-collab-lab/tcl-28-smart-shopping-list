@@ -34,7 +34,11 @@ const ItemsList = () => {
         value={search}
         onChange={(e) => setSearch(e.target.value)}
       />
-      {search && <button onClick={() => setSearch('')}>X</button>}
+      {search && (
+        <button aria-label="clear search" onClick={() => setSearch('')}>
+          X
+        </button>
+      )}
       {snapshot && (
         <>
           {!snapshot.docs.length ? (
