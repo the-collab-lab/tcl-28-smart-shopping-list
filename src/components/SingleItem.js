@@ -15,6 +15,22 @@ const SingleItem = (props) => {
 
   const mlsPerDay = 24 * 60 * 60 * 1000;
 
+  let bgColor;
+  let aria;
+  if (daysUntilPurchase <= 7) {
+    bgColor = 'green';
+    aria = 'buy soon';
+  } else if (daysUntilPurchase > 7 && daysUntilPurchase < 30) {
+    bgColor = 'orange';
+    aria = 'buy kind of soon';
+  } else if (daysUntilPurchase > 30 && daysUntilPurchase < 40) {
+    bgColor = 'red';
+    aria = 'wait a while before buying';
+  } else {
+    bgColor = 'gray';
+    aria = "you haven't bought this in a long time";
+  }
+
   const updateIsPurchased = async (id) => {
     await firestore.collection('items').doc(id).update({
       isPurchased: false,
@@ -73,15 +89,15 @@ const SingleItem = (props) => {
   };
 
   return (
-    <div>
-      <label htmlFor={name}>
+    <div style={{ backgroundColor: bgColor }}>
+      <label htmlFor={name} aria-checked={isPurchased} aria-label={aria}>
         <input
           type="checkbox"
           id={name}
           checked={isPurchased}
           onChange={handleChange}
         />
-        {name}
+        {name} - {daysUntilPurchase}
       </label>
       <button onClick={handleDelete}>Delete</button>
     </div>

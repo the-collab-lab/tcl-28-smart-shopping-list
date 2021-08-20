@@ -50,7 +50,9 @@ const AddItem = () => {
         lastPurchasedDate: null,
         isPurchased: false,
         numberOfPurchases: 0,
-        daysUntilPurchase: null,
+        // initialized value of daysUntilPurchase as frequency instead of null
+        // to assist with sorting for items that have not been purchased yet
+        daysUntilPurchase: frequency,
       };
 
       await firestore.collection('items').add(itemTemplate);
