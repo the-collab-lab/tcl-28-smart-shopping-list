@@ -55,7 +55,16 @@ const Home = () => {
           onChange={(e) => setSharedToken(e.target.value)}
         />
         {sharedTokenError && <p>Token is not found. Please try again.</p>}
-        <Button type="submit" color="background">
+        <Button
+          type="submit"
+          style={{
+            borderRadius: 35,
+            backgroundColor: '#21b6ae',
+            padding: '18px 36px',
+            fontSize: '18px',
+          }}
+          variant="contained"
+        >
           Join an existing list
         </Button>
       </form>
