@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import getToken from '../lib/tokens';
 import { useHistory } from 'react-router-dom';
 import { firestore } from '../lib/firebase';
+import { Button } from '@material-ui/core';
 
 const Home = () => {
   const history = useHistory();
@@ -54,7 +55,9 @@ const Home = () => {
           onChange={(e) => setSharedToken(e.target.value)}
         />
         {sharedTokenError && <p>Token is not found. Please try again.</p>}
-        <button type="submit"> Join an existing list</button>
+        <Button type="submit" color="background">
+          Join an existing list
+        </Button>
       </form>
     </div>
   );
