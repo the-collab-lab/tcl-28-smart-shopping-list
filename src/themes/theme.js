@@ -3,14 +3,18 @@ import Asap from '../fonts/asap.regular.ttf';
 
 export const theme = createTheme({
   palette: {
-    primary: { main: '#98D79A', active: '#98D79A' },
-    active: { main: '#98D79A' },
-    background: { main: '#C8E7F7', active: '#C8E7F7' },
-    text: { main: '#000000' },
-    soon: { main: '#CAFFBF' },
-    'kind-of-soon': { main: '#FFD6A5', active: '#000000' },
-    'not-soon': { main: '#FFADAD' },
-    delete: { main: '#FFA770' },
+    text: {
+      primary: '#000000',
+    },
+    primary: {
+      main: '#98D79A',
+    },
+    secondary: {
+      main: '#FFA770',
+    },
+    background: {
+      default: '#C8E7F7',
+    },
   },
   typography: {
     fontFamily: 'Asap, sans-serif',

@@ -42,7 +42,9 @@ const Home = () => {
   return (
     <div>
       <h1>Welcome to Your Smart Shopping list!</h1>
-      <button onClick={createToken}>Create a new list</button>
+      <Button onClick={createToken} variant="contained" color="primary">
+        Create a new list
+      </Button>
       <p>-or-</p>
       <p>Join an existing shopping list by entering a three word token.</p>
       <form onSubmit={verifyToken}>
@@ -55,16 +57,7 @@ const Home = () => {
           onChange={(e) => setSharedToken(e.target.value)}
         />
         {sharedTokenError && <p>Token is not found. Please try again.</p>}
-        <Button
-          type="submit"
-          style={{
-            borderRadius: 35,
-            backgroundColor: '#21b6ae',
-            padding: '18px 36px',
-            fontSize: '18px',
-          }}
-          variant="contained"
-        >
+        <Button type="submit" variant="contained" color="primary">
           Join an existing list
         </Button>
       </form>
