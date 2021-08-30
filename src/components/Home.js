@@ -42,7 +42,7 @@ const Home = () => {
   return (
     <div>
       <h1>Welcome to Your Smart Shopping list!</h1>
-      <GreenButton createToken={createToken} btnText="Create a new list" />
+      <GreenButton clickFunction={createToken} btnText="Create a new list" />
       <p>-or-</p>
       <p>Join an existing shopping list by entering a three word token.</p>
       <form onSubmit={verifyToken}>

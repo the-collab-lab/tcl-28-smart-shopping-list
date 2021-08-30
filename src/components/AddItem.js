@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { firestore } from '../lib/firebase';
 import { useHistory } from 'react-router-dom';
+import GreenButton from './GreenButton';
 
 const AddItem = () => {
   const [item, setItem] = useState('');
@@ -50,8 +51,6 @@ const AddItem = () => {
         lastPurchasedDate: null,
         isPurchased: false,
         numberOfPurchases: 0,
-        // initialized value of daysUntilPurchase as frequency instead of null
-        // to assist with sorting for items that have not been purchased yet
         daysUntilPurchase: frequency,
       };
 
@@ -114,7 +113,11 @@ const AddItem = () => {
           ></input>
           <label htmlFor="not-soon"> Not soon</label>
         </fieldset>
-        <button type="submit">Add an item</button>
+        <GreenButton
+          type="submit"
+          clickFunction={handleClick}
+          btnText="Add an item"
+        />
       </form>
     </div>
   );

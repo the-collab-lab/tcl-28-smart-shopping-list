@@ -1,8 +1,9 @@
+import { useState } from 'react';
 import { firestore } from '../lib/firebase';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import { useHistory } from 'react-router';
 import SingleItem from './SingleItem';
-import { useState } from 'react';
+import GreenButton from './GreenButton';
 
 const ItemsList = () => {
   const history = useHistory();
@@ -49,7 +50,7 @@ const ItemsList = () => {
           {!snapshot.docs.length ? (
             <>
               <h2>Your shopping list is currently empty.</h2>
-              <button onClick={addItem}>Add Item</button>
+              <GreenButton clickFunction={addItem} btnText="Add Item" />
             </>
           ) : (
             <>
@@ -64,7 +65,7 @@ const ItemsList = () => {
           )}
         </>
       )}
-      <button onClick={removeToken}>clear token</button>
+      <GreenButton clickFunction={removeToken} btnText="Exit List" />
     </div>
   );
 };
