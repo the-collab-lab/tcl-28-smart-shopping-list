@@ -33,5 +33,10 @@ export const theme = createTheme({
         '@font-face': [Asap],
       },
     },
+    MuiButton: {
+      root: {
+        borderRadius: '25px',
+      },
+    },
   },
 });
