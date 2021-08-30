@@ -36,6 +36,7 @@ export const theme = createTheme({
     MuiButton: {
       root: {
         borderRadius: '25px',
+        margin: '8px',
       },
     },
   },

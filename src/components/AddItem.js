@@ -119,10 +119,14 @@ const AddItem = () => {
         <GreenButton
           type="submit"
           clickFunction={handleClick}
-          btnText="Add an item"
+          btnText="Add Item"
         />
       </form>
-      <GreenButton clickFunction={navigateToList} btnText="View List" />
+      <GreenButton
+        type="submit"
+        clickFunction={navigateToList}
+        btnText="View List"
+      />
     </div>
   );
 };

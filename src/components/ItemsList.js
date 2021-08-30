@@ -61,11 +61,11 @@ const ItemsList = () => {
                 .map((doc, index) => (
                   <SingleItem key={index} {...doc.data()} id={doc.id} />
                 ))}
+              <GreenButton clickFunction={addItem} btnText="Add an Item" />
             </>
           )}
         </>
       )}
-      <GreenButton clickFunction={addItem} btnText="Add Item" />
       <GreenButton clickFunction={removeToken} btnText="Exit List" />
     </div>
   );
