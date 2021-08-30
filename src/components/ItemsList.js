@@ -65,6 +65,7 @@ const ItemsList = () => {
           )}
         </>
       )}
+      <GreenButton clickFunction={addItem} btnText="Add Item" />
       <GreenButton clickFunction={removeToken} btnText="Exit List" />
     </div>
   );

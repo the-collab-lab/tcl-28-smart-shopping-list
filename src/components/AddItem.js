@@ -69,6 +69,9 @@ const AddItem = () => {
     }
   };
 
+  // created this function to provide to the button component - it redirects the user to the list page
+  const navigateToList = () => history.push('/list');
+
   return (
     <div>
       <h1>Smart Shopping List</h1>
@@ -119,6 +122,7 @@ const AddItem = () => {
           btnText="Add an item"
         />
       </form>
+      <GreenButton clickFunction={navigateToList} btnText="View List" />
     </div>
   );
 };
