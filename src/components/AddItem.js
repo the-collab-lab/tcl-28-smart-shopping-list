@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { firestore } from '../lib/firebase';
 import { useHistory } from 'react-router-dom';
+import Header from './Header';
 
 const AddItem = () => {
   const [item, setItem] = useState('');
@@ -72,7 +73,7 @@ const AddItem = () => {
 
   return (
     <div>
-      <h1>Smart Shopping List</h1>
+      <Header />
       <form onSubmit={handleClick}>
         <label htmlFor="item">Item Name:</label>
         <input

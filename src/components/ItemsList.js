@@ -1,8 +1,9 @@
+import { useState } from 'react';
 import { firestore } from '../lib/firebase';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import { useHistory } from 'react-router';
 import SingleItem from './SingleItem';
-import { useState } from 'react';
+import Header from './Header';
 
 const ItemsList = () => {
   const history = useHistory();
@@ -28,6 +29,7 @@ const ItemsList = () => {
 
   return (
     <div>
+      <Header />
       {loading && <>Loading</>}
       {error && <>Error</>}
       <h1>Collection:</h1>
