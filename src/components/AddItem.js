@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
   radio: {
+    //backgroundColor: 'black',
     border: '1px solid rgba(0, 0, 0, 0.2)',
     boxShadow:
       'inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1)',
@@ -14,6 +15,15 @@ const useStyles = makeStyles({
     '&:hover': {
       cursor: 'pointer',
     },
+  },
+  soon: {
+    backgroundColor: '#98D79A',
+  },
+  kindOfSoon: {
+    backgroundColor: '#EBBB73',
+  },
+  notSoon: {
+    backgroundColor: '#FFA770',
   },
 });
 
@@ -110,8 +120,9 @@ const AddItem = () => {
             value={7}
             onChange={handleChange}
             required
+            className={classes.soon}
           ></input>
-          <label className={classes.radio} htmlFor="soon">
+          <label className={`${classes.soon} ${classes.radio}`} htmlFor="soon">
             Soon
           </label>
           <input
@@ -122,7 +133,10 @@ const AddItem = () => {
             onChange={handleChange}
             required
           ></input>
-          <label className={classes.radio} htmlFor="kind-of-soon">
+          <label
+            className={`${classes.kindOfSoon} ${classes.radio}`}
+            htmlFor="kind-of-soon"
+          >
             {' '}
             Kind of soon
           </label>
@@ -134,7 +148,10 @@ const AddItem = () => {
             onChange={handleChange}
             required
           ></input>
-          <label className={classes.radio} htmlFor="not-soon">
+          <label
+            className={`${classes.notSoon} ${classes.radio}`}
+            htmlFor="not-soon"
+          >
             {' '}
             Not soon
           </label>
