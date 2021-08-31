@@ -12,6 +12,13 @@ code {
     monospace;
 }
 
+fieldset {
+  border: none;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
 .footer {
   position: fixed;
   bottom: 0;

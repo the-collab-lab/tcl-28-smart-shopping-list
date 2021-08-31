@@ -1,6 +1,21 @@
 import { useState, useEffect } from 'react';
 import { firestore } from '../lib/firebase';
 import { useHistory } from 'react-router-dom';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles({
+  radio: {
+    border: '1px solid rgba(0, 0, 0, 0.2)',
+    boxShadow:
+      'inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1)',
+    padding: '8px 0px',
+    textAlign: 'center',
+    width: '120px',
+    '&:hover': {
+      cursor: 'pointer',
+    },
+  },
+});
 
 const AddItem = () => {
   const [item, setItem] = useState('');
@@ -70,6 +85,8 @@ const AddItem = () => {
     }
   };
 
+  const classes = useStyles();
+
   return (
     <div>
       <h1>Smart Shopping List</h1>
@@ -94,7 +111,9 @@ const AddItem = () => {
             onChange={handleChange}
             required
           ></input>
-          <label htmlFor="soon">Soon</label>
+          <label className={classes.radio} htmlFor="soon">
+            Soon
+          </label>
           <input
             type="radio"
             name="frequency"
@@ -103,7 +122,10 @@ const AddItem = () => {
             onChange={handleChange}
             required
           ></input>
-          <label htmlFor="kind-of-soon"> Kind of soon</label>
+          <label className={classes.radio} htmlFor="kind-of-soon">
+            {' '}
+            Kind of soon
+          </label>
           <input
             type="radio"
             name="frequency"
@@ -112,7 +134,10 @@ const AddItem = () => {
             onChange={handleChange}
             required
           ></input>
-          <label htmlFor="not-soon"> Not soon</label>
+          <label className={classes.radio} htmlFor="not-soon">
+            {' '}
+            Not soon
+          </label>
         </fieldset>
         <button type="submit">Add an item</button>
       </form>
