@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { firestore } from '../lib/firebase';
 import calculateEstimate from '../lib/estimates';
+import swal from 'sweetalert';
 
 const SingleItem = (props) => {
   const {
