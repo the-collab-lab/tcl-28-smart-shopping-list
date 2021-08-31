@@ -118,7 +118,7 @@ const AddItem = () => {
         </fieldset>
         <GreenButton
           type="submit"
-          clickFunction={frequency && handleClick}
+          clickFunction={item && frequency && handleClick}
           btnText="Add Item"
         />
       </form>
