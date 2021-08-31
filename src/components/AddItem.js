@@ -10,12 +10,22 @@ const useStyles = makeStyles({
     flexFlow: 'row wrap',
     justifyContent: 'center',
   },
-  radio: {},
+  radio: {
+    position: 'absolute !important',
+    clip: 'rect(0, 0, 0, 0)',
+    height: 1,
+    width: 1,
+    border: 0,
+    overflow: 'hidden',
+    '&:checked + label': {
+      boxShadow:
+        'inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1)',
+      fontWeight: 'bold',
+    },
+  },
   radioLabel: {
-    //backgroundColor: 'black',
     border: '1px solid rgba(0, 0, 0, 0.2)',
-    boxShadow:
-      'inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1)',
+    boxShadow: 'none',
     padding: '8px 0px',
     textAlign: 'center',
     width: '120px',
@@ -126,8 +136,8 @@ const AddItem = () => {
             id="soon"
             value={7}
             onChange={handleChange}
-            required
             className={classes.radio}
+            required
           ></input>
           <label
             className={`${classes.soon} ${classes.radioLabel}`}
@@ -141,6 +151,7 @@ const AddItem = () => {
             id="kind-of-soon"
             value={14}
             onChange={handleChange}
+            className={classes.radio}
             required
           ></input>
           <label
@@ -156,6 +167,7 @@ const AddItem = () => {
             id="not-soon"
             value={30}
             onChange={handleChange}
+            className={classes.radio}
             required
           ></input>
           <label
