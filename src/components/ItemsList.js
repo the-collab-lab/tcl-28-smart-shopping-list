@@ -50,7 +50,7 @@ const ItemsList = () => {
           {!snapshot.docs.length ? (
             <>
               <h2>Your shopping list is currently empty.</h2>
-              <GreenButton clickFunction={addItem} btnText="Add Item" />
+              <GreenButton clickFunction={addItem} btnText="Add an Item" />
             </>
           ) : (
             <>

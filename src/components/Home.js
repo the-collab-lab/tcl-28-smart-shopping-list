@@ -55,7 +55,11 @@ const Home = () => {
           onChange={(e) => setSharedToken(e.target.value)}
         />
         {sharedTokenError && <p>Token is not found. Please try again.</p>}
-        <GreenButton type="submit" btnText="Join an existing list" />
+        <GreenButton
+          type="submit"
+          clickFunction={verifyToken}
+          btnText="Join an existing list"
+        />
       </form>
     </div>
   );
