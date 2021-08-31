@@ -4,7 +4,14 @@ import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
-  radio: {
+  fieldset: {
+    border: 'none',
+    display: 'flex',
+    flexFlow: 'row wrap',
+    justifyContent: 'center',
+  },
+  radio: {},
+  radioLabel: {
     //backgroundColor: 'black',
     border: '1px solid rgba(0, 0, 0, 0.2)',
     boxShadow:
@@ -111,7 +118,7 @@ const AddItem = () => {
           onChange={handleChange}
           required
         />
-        <fieldset>
+        <fieldset className={classes.fieldset}>
           <legend>How soon will you buy this again?</legend>
           <input
             type="radio"
@@ -120,9 +127,12 @@ const AddItem = () => {
             value={7}
             onChange={handleChange}
             required
-            className={classes.soon}
+            className={classes.radio}
           ></input>
-          <label className={`${classes.soon} ${classes.radio}`} htmlFor="soon">
+          <label
+            className={`${classes.soon} ${classes.radioLabel}`}
+            htmlFor="soon"
+          >
             Soon
           </label>
           <input
@@ -134,7 +144,7 @@ const AddItem = () => {
             required
           ></input>
           <label
-            className={`${classes.kindOfSoon} ${classes.radio}`}
+            className={`${classes.kindOfSoon} ${classes.radioLabel}`}
             htmlFor="kind-of-soon"
           >
             {' '}
@@ -149,7 +159,7 @@ const AddItem = () => {
             required
           ></input>
           <label
-            className={`${classes.notSoon} ${classes.radio}`}
+            className={`${classes.notSoon} ${classes.radioLabel}`}
             htmlFor="not-soon"
           >
             {' '}
