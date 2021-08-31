@@ -7,8 +7,8 @@ const useStyles = makeStyles({
   fieldset: {
     border: 'none',
     display: 'flex',
-    flexFlow: 'row wrap',
-    justifyContent: 'center',
+    flexDirection: 'column',
+    alignItems: 'center',
   },
   radio: {
     position: 'absolute !important',
@@ -30,7 +30,9 @@ const useStyles = makeStyles({
   },
   radioLabel: {
     border: '1px solid rgba(0, 0, 0, 0.2)',
+    borderRadius: '10px',
     boxShadow: 'none',
+    margin: '8px 0px',
     padding: '8px 0px',
     textAlign: 'center',
     width: '120px',
