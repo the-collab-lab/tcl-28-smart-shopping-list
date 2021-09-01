@@ -58,7 +58,7 @@ const ItemsList = () => {
         <>
           {!snapshot.docs.length ? (
             <>
-              <h2>Your shopping list is currently empty.</h2>
+              <h2>Your shopping list is empty!</h2>
               <button onClick={addItem}>Add Item</button>
             </>
           ) : (
