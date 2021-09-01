@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Input = (props) => {
-  const { label, name, value, onChange, required } = props;
+  const { placeholder, name, value, onChange, required } = props;
   const classes = useStyles();
   return (
     <TextField
@@ -19,7 +19,7 @@ const Input = (props) => {
       value={value}
       variant="outlined"
       size="small"
-      placeholder={label}
+      placeholder={placeholder}
       className={classes.textField}
       onChange={onChange}
     />

@@ -79,7 +79,7 @@ const AddItem = () => {
         <Input
           required
           name="item"
-          label="Item Name"
+          placeholder="Item Name"
           value={item}
           onChange={handleChange}
         />

@@ -34,7 +34,7 @@ const ItemsList = () => {
       <h1>Collection:</h1>
       <Input
         name="search"
-        label="Search List"
+        placeholder="Search List"
         value={search}
         onChange={(e) => setSearch(e.target.value)}
       />
