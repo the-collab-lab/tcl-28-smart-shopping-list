@@ -9,15 +9,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Input = () => {
+const Input = (props) => {
+  const { label, name, value, onChange } = props;
   const classes = useStyles();
   return (
     <TextField
       required
+      name={name}
+      value={value}
       id="outlined-basic"
       variant="outlined"
       size="small"
+      label={label}
       className={classes.textField}
+      onChange={onChange}
     />
   );
 };

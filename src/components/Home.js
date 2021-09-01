@@ -3,6 +3,7 @@ import getToken from '../lib/tokens';
 import { useHistory } from 'react-router-dom';
 import { firestore } from '../lib/firebase';
 import { Button } from '@material-ui/core';
+import Input from './Input';
 
 const Home = () => {
   const history = useHistory();
@@ -48,11 +49,9 @@ const Home = () => {
       <p>-or-</p>
       <p>Join an existing shopping list by entering a three word token.</p>
       <form onSubmit={verifyToken}>
-        <label htmlFor="token">Share token</label>
-        <input
-          type="text"
-          id="token"
+        <Input
           name="token"
+          label="Enter token here"
           value={sharedToken}
           onChange={(e) => setSharedToken(e.target.value)}
         />
