@@ -19,6 +19,7 @@ const useStyles = makeStyles({
     backgroundColor: '#80727B',
     color: '#fefefe',
     height: 'auto',
+    margin: '0 8px',
     '& :hover': {
       backgroundColor: '#FFADAD',
       color: '#000',

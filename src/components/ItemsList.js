@@ -3,11 +3,14 @@ import { useCollection } from 'react-firebase-hooks/firestore';
 import { useHistory } from 'react-router';
 import SingleItem from './SingleItem';
 import { useState } from 'react';
+import { Button } from '@material-ui/core';
+import useStyles from '../themes/SingleItemStyles';
 
 const ItemsList = () => {
   const history = useHistory();
   const token = localStorage.getItem('token');
   const [search, setSearch] = useState('');
+  const classes = useStyles();
 
   const [snapshot, loading, error] = useCollection(
     firestore
@@ -40,9 +43,14 @@ const ItemsList = () => {
         onChange={(e) => setSearch(e.target.value)}
       />
       {search && (
-        <button aria-label="clear search" onClick={() => setSearch('')}>
+        <Button
+          className={classes.deleteBtn}
+          size="small"
+          aria-label="clear search"
+          onClick={() => setSearch('')}
+        >
           X
-        </button>
+        </Button>
       )}
       {snapshot && (
         <>
