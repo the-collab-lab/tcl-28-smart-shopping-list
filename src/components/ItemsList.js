@@ -7,7 +7,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
   basket: {
-    marginBottom: '10px',
+    margin: '10px 0px',
+    height: 200,
   },
 });
 
@@ -72,6 +73,13 @@ const ItemsList = () => {
                 .map((doc, index) => (
                   <SingleItem key={index} {...doc.data()} id={doc.id} />
                 ))}
+              <div>
+                <img
+                  src="img/groceries.svg"
+                  alt=""
+                  className={classes.basket}
+                />
+              </div>
             </>
           )}
         </>
