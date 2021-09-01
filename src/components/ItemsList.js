@@ -7,7 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
   basket: {
-    margin: '10px 0px',
+    marginTop: 20,
     height: 200,
   },
 });
@@ -59,9 +59,6 @@ const ItemsList = () => {
           {!snapshot.docs.length ? (
             <>
               <h2>Your shopping list is currently empty.</h2>
-              <div>
-                <img src="img/basket.svg" alt="" className={classes.basket} />
-              </div>
               <button onClick={addItem}>Add Item</button>
             </>
           ) : (
@@ -73,18 +70,20 @@ const ItemsList = () => {
                 .map((doc, index) => (
                   <SingleItem key={index} {...doc.data()} id={doc.id} />
                 ))}
-              <div>
-                <img
-                  src="img/groceries.svg"
-                  alt=""
-                  className={classes.basket}
-                />
-              </div>
             </>
           )}
         </>
       )}
       <button onClick={removeToken}>clear token</button>
+      {snapshot && !snapshot.docs.length ? (
+        <div>
+          <img src="img/basket.svg" alt="" className={classes.basket} />
+        </div>
+      ) : (
+        <div>
+          <img src="img/groceries.svg" alt="" className={classes.basket} />
+        </div>
+      )}
     </div>
   );
 };
