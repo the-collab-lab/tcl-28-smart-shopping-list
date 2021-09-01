@@ -52,7 +52,7 @@ const Home = () => {
         <Input
           required
           name="token"
-          label="Enter a token"
+          placeholder="Enter a token"
           value={sharedToken}
           onChange={(e) => setSharedToken(e.target.value)}
         />
