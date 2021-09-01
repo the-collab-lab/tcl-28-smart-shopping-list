@@ -81,7 +81,7 @@ const ItemsList = () => {
         </div>
       ) : (
         <div>
-          <img src="img/groceries.svg" alt="" className={classes.basket} />
+          <img src="img/full-basket.png" alt="" className={classes.basket} />
         </div>
       )}
     </div>
