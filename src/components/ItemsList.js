@@ -6,10 +6,6 @@ import { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
-  basketContainer: {
-    display: 'flex',
-    justifyContent: 'center',
-  },
   basket: {
     marginBottom: '10px',
   },
