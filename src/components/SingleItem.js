@@ -108,7 +108,12 @@ const SingleItem = (props) => {
         />
         {name}
       </InputLabel>
-      <Button className={classes.deleteBtn} size="small" onClick={handleDelete}>
+      <Button
+        className={classes.deleteBtn}
+        aria-label="delete"
+        size="small"
+        onClick={handleDelete}
+      >
         X
       </Button>
     </div>

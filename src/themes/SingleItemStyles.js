@@ -21,6 +21,7 @@ const useStyles = makeStyles({
     height: 'auto',
     '& :hover': {
       backgroundColor: '#FFADAD',
+      color: '#000',
     },
   },
 });
