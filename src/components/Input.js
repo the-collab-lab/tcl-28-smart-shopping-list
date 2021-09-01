@@ -17,10 +17,9 @@ const Input = (props) => {
       required={required}
       name={name}
       value={value}
-      id="outlined-basic"
       variant="outlined"
       size="small"
-      label={label}
+      placeholder={label}
       className={classes.textField}
       onChange={onChange}
     />

@@ -32,10 +32,9 @@ const ItemsList = () => {
       {loading && <>Loading</>}
       {error && <>Error</>}
       <h1>Collection:</h1>
-      <h2>Filter Items:</h2>
       <Input
         name="search"
-        label="Start typing here..."
+        label="Search List"
         value={search}
         onChange={(e) => setSearch(e.target.value)}
       />
