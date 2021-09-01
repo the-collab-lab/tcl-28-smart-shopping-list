@@ -10,11 +10,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Input = (props) => {
-  const { label, name, value, onChange } = props;
+  const { label, name, value, onChange, required } = props;
   const classes = useStyles();
   return (
     <TextField
-      required
+      required={required}
       name={name}
       value={value}
       id="outlined-basic"

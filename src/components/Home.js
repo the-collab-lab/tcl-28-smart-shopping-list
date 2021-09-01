@@ -50,6 +50,7 @@ const Home = () => {
       <p>Join an existing shopping list by entering a three word token.</p>
       <form onSubmit={verifyToken}>
         <Input
+          required
           name="token"
           label="Enter token here"
           value={sharedToken}

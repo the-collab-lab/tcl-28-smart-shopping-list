@@ -3,6 +3,7 @@ import { useCollection } from 'react-firebase-hooks/firestore';
 import { useHistory } from 'react-router';
 import SingleItem from './SingleItem';
 import { useState } from 'react';
+import Input from './Input';
 
 const ItemsList = () => {
   const history = useHistory();
@@ -31,11 +32,10 @@ const ItemsList = () => {
       {loading && <>Loading</>}
       {error && <>Error</>}
       <h1>Collection:</h1>
-      <label htmlFor="search">Filter Items</label>
-      <input
-        type="text"
-        id="search"
-        placeholder="Start typing here..."
+      <h2>Filter Items:</h2>
+      <Input
+        name="search"
+        label="Start typing here..."
         value={search}
         onChange={(e) => setSearch(e.target.value)}
       />
