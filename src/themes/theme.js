@@ -20,7 +20,7 @@ export const theme = createTheme({
     fontFamily: 'Asap, sans-serif',
     fontStyle: 'normal',
     fontDisplay: 'swap',
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 400,
     src: `
     local('Asap'),
@@ -28,14 +28,16 @@ export const theme = createTheme({
     url(${Asap}) format('ttf')
   `,
     h1: {
-      marginBottom: 20,
-      '@media (min-width:400px)': {
-        fontSize: '3rem',
+      fontSize: '2rem',
+      fontWeight: '700',
+      '@media (min-width:600px)': {
+        fontSize: '3.5rem',
       },
     },
     h2: {
       fontSize: '2.5rem',
-      fontWeight: 'bold',
+      fontWeight: '700',
+      lineHeight: '5rem',
       '@media (min-width:600px)': {
         fontSize: '4rem',
       },
@@ -71,7 +73,7 @@ export const theme = createTheme({
     MuiButton: {
       root: {
         borderRadius: '25px',
-        margin: '8px',
+        margin: '20px',
       },
     },
   },

@@ -43,7 +43,7 @@ const Home = () => {
 
   return (
     <>
-      <div style={{ width: '100%', marginTop: '3em', marginBottom: '2em' }}>
+      <div style={{ width: '100%', marginTop: '3em' }}>
         <Box
           display="flex"
           flexDirection="column"
@@ -54,7 +54,7 @@ const Home = () => {
           <img
             src="https://image.flaticon.com/icons/png/512/1000/1000145.png"
             alt="lettuce icon"
-            height="130"
+            height="120"
           />
 
           <GreenButton
