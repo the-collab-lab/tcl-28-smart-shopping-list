@@ -9,7 +9,7 @@ const Header = () => {
         <Box display="flex" alignItems="center" justifyContent="center" p={1}>
           <img
             src="https://image.flaticon.com/icons/png/512/1000/1000145.png"
-            alt="logo"
+            alt="lettuce icon"
             height="70"
           />
           <Typography variant="h2">Lettuce Know</Typography>
