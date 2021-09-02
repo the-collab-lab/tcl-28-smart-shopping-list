@@ -1,8 +1,9 @@
+import { useState } from 'react';
 import { firestore } from '../lib/firebase';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import { useHistory } from 'react-router';
 import SingleItem from './SingleItem';
-import { useState } from 'react';
+import Header from './Header';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
@@ -38,6 +39,7 @@ const ItemsList = () => {
 
   return (
     <div>
+      <Header />
       {loading && <>Loading</>}
       {error && <>Error</>}
       <h1>Collection:</h1>
