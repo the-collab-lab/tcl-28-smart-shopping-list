@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import getToken from '../lib/tokens';
 import { useHistory } from 'react-router-dom';
 import { firestore } from '../lib/firebase';
+import Input from './Input';
 import GreenButton from './GreenButton';
 
 const Home = () => {
@@ -46,11 +47,10 @@ const Home = () => {
       <p>-or-</p>
       <p>Join an existing shopping list by entering a three word token.</p>
       <form onSubmit={verifyToken}>
-        <label htmlFor="token">Share token</label>
-        <input
-          type="text"
-          id="token"
+        <Input
+          required
           name="token"
+          placeholder="Enter a token"
           value={sharedToken}
           onChange={(e) => setSharedToken(e.target.value)}
         />

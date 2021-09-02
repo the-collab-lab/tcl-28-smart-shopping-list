@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { firestore } from '../lib/firebase';
 import { useHistory } from 'react-router-dom';
+import Input from './Input';
 import GreenButton from './GreenButton';
 import Header from './Header';
 import { makeStyles } from '@material-ui/core/styles';
@@ -131,15 +132,13 @@ const AddItem = () => {
     <div>
       <Header />
       <form onSubmit={handleClick}>
-        <label htmlFor="item">Item Name:</label>
-        <input
-          type="text"
-          name="item"
-          id="item"
-          value={item}
-          placeholder="Type item here"
-          onChange={handleChange}
+        <h2>Add new item</h2>
+        <Input
           required
+          name="item"
+          placeholder="Item Name"
+          value={item}
+          onChange={handleChange}
         />
         <fieldset className={classes.fieldset}>
           <legend>How soon will you buy this again?</legend>

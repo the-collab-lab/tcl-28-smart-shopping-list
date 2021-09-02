@@ -3,6 +3,7 @@ import { firestore } from '../lib/firebase';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import { useHistory } from 'react-router';
 import SingleItem from './SingleItem';
+import Input from './Input';
 import GreenButton from './GreenButton';
 import Header from './Header';
 import { makeStyles } from '@material-ui/core/styles';
@@ -69,11 +70,9 @@ const ItemsList = () => {
       {loading && <>Loading</>}
       {error && <>Error</>}
       <h1>Collection:</h1>
-      <label htmlFor="search">Filter Items</label>
-      <input
-        type="text"
-        id="search"
-        placeholder="Start typing here..."
+      <Input
+        name="search"
+        placeholder="Search List"
         value={search}
         onChange={(e) => setSearch(e.target.value)}
       />
