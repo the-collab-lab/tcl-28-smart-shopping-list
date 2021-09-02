@@ -4,6 +4,15 @@ import { useCollection } from 'react-firebase-hooks/firestore';
 import { useHistory } from 'react-router';
 import SingleItem from './SingleItem';
 import GreenButton from './GreenButton';
+import Header from './Header';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles({
+  basket: {
+    marginTop: 20,
+    height: 200,
+  },
+});
 
 const ItemsList = () => {
   const history = useHistory();
@@ -27,8 +36,11 @@ const ItemsList = () => {
     history.push('/add');
   };
 
+  const classes = useStyles();
+
   return (
     <div>
+      <Header />
       {loading && <>Loading</>}
       {error && <>Error</>}
       <h1>Collection:</h1>
@@ -49,7 +61,7 @@ const ItemsList = () => {
         <>
           {!snapshot.docs.length ? (
             <>
-              <h2>Your shopping list is currently empty.</h2>
+              <h2>Your shopping list is empty!</h2>
               <GreenButton clickFunction={addItem} btnText="Add an Item" />
             </>
           ) : (
@@ -67,6 +79,15 @@ const ItemsList = () => {
         </>
       )}
       <GreenButton clickFunction={removeToken} btnText="Exit List" />
+      {snapshot && !snapshot.docs.length ? (
+        <div>
+          <img src="img/basket.svg" alt="" className={classes.basket} />
+        </div>
+      ) : (
+        <div>
+          <img src="img/full-basket.png" alt="" className={classes.basket} />
+        </div>
+      )}
     </div>
   );
 };

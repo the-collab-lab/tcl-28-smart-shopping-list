@@ -20,6 +20,7 @@ export const theme = createTheme({
     fontFamily: 'Asap, sans-serif',
     fontStyle: 'normal',
     fontDisplay: 'swap',
+    fontSize: 16,
     fontWeight: 400,
     src: `
     local('Asap'),
@@ -41,3 +42,13 @@ export const theme = createTheme({
     },
   },
 });
+
+theme.typography.h2 = {
+  fontSize: '2.3rem',
+  '@media (min-width:600px)': {
+    fontSize: '3rem',
+  },
+  [theme.breakpoints.up('md')]: {
+    fontSize: '4rem',
+  },
+};
