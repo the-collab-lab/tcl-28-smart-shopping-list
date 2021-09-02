@@ -6,11 +6,37 @@ import SingleItem from './SingleItem';
 import GreenButton from './GreenButton';
 import Header from './Header';
 import { makeStyles } from '@material-ui/core/styles';
+import { Button } from '@material-ui/core/';
 
-const useStyles = makeStyles({
+export const useStyles = makeStyles({
   basket: {
     marginTop: 20,
     height: 200,
+  },
+  // these are the SingleItem styles
+  container: {
+    width: '75%',
+    margin: '16px auto',
+    display: 'flex',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+  },
+  label: {
+    width: '60%',
+    padding: '8px',
+    color: 'rgb(0, 0, 0)',
+    textAlign: 'left',
+  },
+  deleteBtn: {
+    variant: 'contained',
+    backgroundColor: '#80727B',
+    color: '#fefefe',
+    height: 'auto',
+    margin: '0 8px',
+    '& :hover': {
+      backgroundColor: '#FFADAD',
+      color: '#000',
+    },
   },
 });
 
@@ -18,6 +44,7 @@ const ItemsList = () => {
   const history = useHistory();
   const token = localStorage.getItem('token');
   const [search, setSearch] = useState('');
+  const classes = useStyles();
 
   const [snapshot, loading, error] = useCollection(
     firestore
@@ -36,8 +63,6 @@ const ItemsList = () => {
     history.push('/add');
   };
 
-  const classes = useStyles();
-
   return (
     <div>
       <Header />
@@ -53,9 +78,14 @@ const ItemsList = () => {
         onChange={(e) => setSearch(e.target.value)}
       />
       {search && (
-        <button aria-label="clear search" onClick={() => setSearch('')}>
+        <Button
+          className={classes.deleteBtn}
+          size="small"
+          aria-label="clear search"
+          onClick={() => setSearch('')}
+        >
           X
-        </button>
+        </Button>
       )}
       {snapshot && (
         <>
