@@ -1,8 +1,12 @@
 import React, { useEffect } from 'react';
 import { firestore } from '../lib/firebase';
 import calculateEstimate from '../lib/estimates';
+import { InputLabel, Button } from '@material-ui/core';
+import { useStyles } from './ItemsList';
+import swal from 'sweetalert';
 
 const SingleItem = (props) => {
+  const classes = useStyles();
   const {
     name,
     isPurchased,
@@ -18,13 +22,13 @@ const SingleItem = (props) => {
   let bgColor;
   let aria;
   if (daysUntilPurchase <= 7) {
-    bgColor = 'green';
+    bgColor = '#98D79A';
     aria = 'buy soon';
   } else if (daysUntilPurchase > 7 && daysUntilPurchase < 30) {
-    bgColor = 'orange';
+    bgColor = '#EBBB73';
     aria = 'buy kind of soon';
-  } else if (daysUntilPurchase > 30 && daysUntilPurchase < 40) {
-    bgColor = 'red';
+  } else if (daysUntilPurchase >= 30 && daysUntilPurchase < 40) {
+    bgColor = '#FFA770';
     aria = 'wait a while before buying';
   } else {
     bgColor = 'gray';
@@ -83,23 +87,47 @@ const SingleItem = (props) => {
   };
 
   const handleDelete = async (e) => {
-    if (window.confirm(`Do you really want to delete ${name}?`)) {
-      await firestore.collection('items').doc(id).delete();
-    }
+    swal({
+      title: 'Are you sure?',
+      text: `Do you really want to delete ${name}?`,
+      icon: 'warning',
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        firestore.collection('items').doc(id).delete();
+        swal(`You have deleted ${name}.`, {
+          icon: 'success',
+        });
+      }
+    });
   };
 
   return (
-    <div style={{ backgroundColor: bgColor }}>
-      <label htmlFor={name} aria-checked={isPurchased} aria-label={aria}>
+    <div className={classes.container}>
+      <InputLabel
+        className={classes.label}
+        style={{ backgroundColor: bgColor }}
+        htmlFor={name}
+        aria-checked={isPurchased}
+        aria-label={aria}
+      >
         <input
           type="checkbox"
           id={name}
           checked={isPurchased}
           onChange={handleChange}
         />
-        {name} - {daysUntilPurchase}
-      </label>
-      <button onClick={handleDelete}>Delete</button>
+        {name}
+      </InputLabel>
+      <Button
+        className={classes.deleteBtn}
+        aria-label="delete"
+        size="small"
+        onClick={handleDelete}
+      >
+        X
+      </Button>
     </div>
   );
 };
