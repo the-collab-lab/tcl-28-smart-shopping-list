@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { firestore } from '../lib/firebase';
 import { useHistory } from 'react-router-dom';
+import swal from 'sweetalert';
 
 const AddItem = () => {
   const [item, setItem] = useState('');
@@ -33,7 +34,9 @@ const AddItem = () => {
             .name.replace(/[\W_]+/g, '')
             .toLowerCase();
           if (formattedElem === formattedItem) {
-            alert('You have already added this item!');
+            swal('Oh no!', `You have already added ${item}.`, 'warning', {
+              button: 'Go back',
+            });
             alreadyHave = true;
           }
         });
@@ -57,7 +60,9 @@ const AddItem = () => {
 
       await firestore.collection('items').add(itemTemplate);
 
-      alert(`Successfully added ${item} to your list!`);
+      swal('Success!', `You added ${item} to your list.`, 'success', {
+        button: 'Ok',
+      });
       history.push('/list');
     }
   };
