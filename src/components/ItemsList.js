@@ -7,7 +7,7 @@ import Input from './Input';
 import GreenButton from './GreenButton';
 import Header from './Header';
 import { makeStyles } from '@material-ui/core/styles';
-import { Button } from '@material-ui/core/';
+import { Button, Typography } from '@material-ui/core';
 
 export const useStyles = makeStyles({
   basket: {
@@ -69,7 +69,7 @@ const ItemsList = () => {
       <Header />
       {loading && <>Loading</>}
       {error && <>Error</>}
-      <h1>Collection:</h1>
+      <Typography variant="h5">Your List:</Typography>
       <Input
         name="search"
         placeholder="Search List"

@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { firestore } from '../lib/firebase';
 import Input from './Input';
 import GreenButton from './GreenButton';
+import { Box, Typography } from '@material-ui/core';
 
 const Home = () => {
   const history = useHistory();
@@ -41,27 +42,55 @@ const Home = () => {
   };
 
   return (
-    <div>
-      <h1>Welcome to Your Smart Shopping list!</h1>
-      <GreenButton clickFunction={createToken} btnText="Create a new list" />
-      <p>-or-</p>
-      <p>Join an existing shopping list by entering a three word token.</p>
-      <form onSubmit={verifyToken}>
-        <Input
-          required
-          name="token"
-          placeholder="Enter a token"
-          value={sharedToken}
-          onChange={(e) => setSharedToken(e.target.value)}
-        />
-        {sharedTokenError && <p>Token is not found. Please try again.</p>}
-        <GreenButton
-          type="submit"
-          clickFunction={verifyToken}
-          btnText="Join an existing list"
-        />
-      </form>
-    </div>
+    <>
+      <div style={{ width: '100%', marginTop: '3em', marginBottom: '2em' }}>
+        <Box
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          justifyContent="center"
+        >
+          <Typography variant="h2">LETTUCE KNOW</Typography>
+          <img
+            src="https://image.flaticon.com/icons/png/512/1000/1000145.png"
+            alt="lettuce icon"
+            height="130"
+          />
+
+          <GreenButton
+            clickFunction={createToken}
+            btnText="Create a new list"
+          />
+          <Typography variant="subtitle2">-or-</Typography>
+          <Typography variant="h6">
+            Join an existing shopping list by entering a three word token.
+          </Typography>
+          <Box display="flex" flexDirection="column">
+            <form onSubmit={verifyToken}>
+              <Input
+                required
+                name="token"
+                placeholder="Enter a token"
+                value={sharedToken}
+                onChange={(e) => setSharedToken(e.target.value)}
+              />
+              {sharedTokenError && (
+                <Typography variant="subtitle1">
+                  Token is not found. Please try again.
+                </Typography>
+              )}
+              <Box flexGrow={1}>
+                <GreenButton
+                  type="submit"
+                  clickFunction={verifyToken}
+                  btnText="Join an existing list"
+                />
+              </Box>
+            </form>
+          </Box>
+        </Box>
+      </div>
+    </>
   );
 };
 

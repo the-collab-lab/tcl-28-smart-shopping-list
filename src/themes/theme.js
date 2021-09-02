@@ -20,13 +20,47 @@ export const theme = createTheme({
     fontFamily: 'Asap, sans-serif',
     fontStyle: 'normal',
     fontDisplay: 'swap',
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: 400,
     src: `
     local('Asap'),
     local('Asap-Regular'),
     url(${Asap}) format('ttf')
   `,
+    h1: {
+      marginBottom: 20,
+      '@media (min-width:400px)': {
+        fontSize: '3rem',
+      },
+    },
+    h2: {
+      fontSize: '2.5rem',
+      fontWeight: 'bold',
+      '@media (min-width:600px)': {
+        fontSize: '4rem',
+      },
+    },
+    h5: {
+      fontSize: '1.5rem',
+      marginBottom: 20,
+    },
+    h6: {
+      fontSize: '1.2rem',
+      margin: '0 20px 20px',
+      textAlign: 'center',
+      '@media (min-width:600px)': {
+        fontSize: '2.2rem',
+        maxWidth: '70%',
+      },
+    },
+    subtitle1: {
+      marginTop: 20,
+    },
+    subtitle2: {
+      fontSize: '1.2rem',
+      marginBottom: 20,
+      marginTop: 20,
+    },
   },
   overrides: {
     MuiCssBaseline: {
@@ -42,13 +76,3 @@ export const theme = createTheme({
     },
   },
 });
-
-theme.typography.h2 = {
-  fontSize: '2.3rem',
-  '@media (min-width:600px)': {
-    fontSize: '3rem',
-  },
-  [theme.breakpoints.up('md')]: {
-    fontSize: '4rem',
-  },
-};
