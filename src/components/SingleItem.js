@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { firestore } from '../lib/firebase';
 import calculateEstimate from '../lib/estimates';
+import swal from 'sweetalert';
 
 const SingleItem = (props) => {
   const {
@@ -83,9 +84,20 @@ const SingleItem = (props) => {
   };
 
   const handleDelete = async (e) => {
-    if (window.confirm(`Do you really want to delete ${name}?`)) {
-      await firestore.collection('items').doc(id).delete();
-    }
+    swal({
+      title: 'Are you sure?',
+      text: `Do you really want to delete ${name}?`,
+      icon: 'warning',
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        firestore.collection('items').doc(id).delete();
+        swal(`You have deleted ${name}.`, {
+          icon: 'success',
+        });
+      }
+    });
   };
 
   return (
