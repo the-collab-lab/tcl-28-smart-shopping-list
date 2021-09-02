@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { firestore } from '../lib/firebase';
 import { useHistory } from 'react-router-dom';
+import GreenButton from './GreenButton';
 import Header from './Header';
 import { makeStyles } from '@material-ui/core/styles';
 import swal from 'sweetalert';
@@ -103,8 +104,6 @@ const AddItem = () => {
         lastPurchasedDate: null,
         isPurchased: false,
         numberOfPurchases: 0,
-        // initialized value of daysUntilPurchase as frequency instead of null
-        // to assist with sorting for items that have not been purchased yet
         daysUntilPurchase: frequency,
       };
 
@@ -125,6 +124,7 @@ const AddItem = () => {
     }
   };
 
+  const navigateToList = () => history.push('/list');
   const classes = useStyles();
 
   return (
@@ -191,8 +191,17 @@ const AddItem = () => {
             Not soon
           </label>
         </fieldset>
-        <button type="submit">Add an item</button>
+        <GreenButton
+          type="submit"
+          clickFunction={item && frequency && handleClick}
+          btnText="Add Item"
+        />
       </form>
+      <GreenButton
+        type="submit"
+        clickFunction={navigateToList}
+        btnText="View List"
+      />
     </div>
   );
 };

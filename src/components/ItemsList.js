@@ -3,6 +3,7 @@ import { firestore } from '../lib/firebase';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import { useHistory } from 'react-router';
 import SingleItem from './SingleItem';
+import GreenButton from './GreenButton';
 import Header from './Header';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -61,7 +62,7 @@ const ItemsList = () => {
           {!snapshot.docs.length ? (
             <>
               <h2>Your shopping list is empty!</h2>
-              <button onClick={addItem}>Add Item</button>
+              <GreenButton clickFunction={addItem} btnText="Add an Item" />
             </>
           ) : (
             <>
@@ -72,11 +73,12 @@ const ItemsList = () => {
                 .map((doc, index) => (
                   <SingleItem key={index} {...doc.data()} id={doc.id} />
                 ))}
+              <GreenButton clickFunction={addItem} btnText="Add an Item" />
             </>
           )}
         </>
       )}
-      <button onClick={removeToken}>clear token</button>
+      <GreenButton clickFunction={removeToken} btnText="Exit List" />
       {snapshot && !snapshot.docs.length ? (
         <div>
           <img src="img/basket.svg" alt="" className={classes.basket} />
