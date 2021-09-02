@@ -3,6 +3,14 @@ import { useCollection } from 'react-firebase-hooks/firestore';
 import { useHistory } from 'react-router';
 import SingleItem from './SingleItem';
 import { useState } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles({
+  basket: {
+    marginTop: 20,
+    height: 200,
+  },
+});
 
 const ItemsList = () => {
   const history = useHistory();
@@ -26,6 +34,8 @@ const ItemsList = () => {
     history.push('/add');
   };
 
+  const classes = useStyles();
+
   return (
     <div>
       {loading && <>Loading</>}
@@ -48,7 +58,7 @@ const ItemsList = () => {
         <>
           {!snapshot.docs.length ? (
             <>
-              <h2>Your shopping list is currently empty.</h2>
+              <h2>Your shopping list is empty!</h2>
               <button onClick={addItem}>Add Item</button>
             </>
           ) : (
@@ -65,6 +75,15 @@ const ItemsList = () => {
         </>
       )}
       <button onClick={removeToken}>clear token</button>
+      {snapshot && !snapshot.docs.length ? (
+        <div>
+          <img src="img/basket.svg" alt="" className={classes.basket} />
+        </div>
+      ) : (
+        <div>
+          <img src="img/full-basket.png" alt="" className={classes.basket} />
+        </div>
+      )}
     </div>
   );
 };
