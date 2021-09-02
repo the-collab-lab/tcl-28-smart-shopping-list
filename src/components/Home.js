@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import getToken from '../lib/tokens';
 import { useHistory } from 'react-router-dom';
 import { firestore } from '../lib/firebase';
-import { Button } from '@material-ui/core';
+import GreenButton from './GreenButton';
 
 const Home = () => {
   const history = useHistory();
@@ -42,9 +42,7 @@ const Home = () => {
   return (
     <div>
       <h1>Welcome to Your Smart Shopping list!</h1>
-      <Button onClick={createToken} variant="contained" color="primary">
-        Create a new list
-      </Button>
+      <GreenButton clickFunction={createToken} btnText="Create a new list" />
       <p>-or-</p>
       <p>Join an existing shopping list by entering a three word token.</p>
       <form onSubmit={verifyToken}>
@@ -57,9 +55,11 @@ const Home = () => {
           onChange={(e) => setSharedToken(e.target.value)}
         />
         {sharedTokenError && <p>Token is not found. Please try again.</p>}
-        <Button type="submit" variant="contained" color="primary">
-          Join an existing list
-        </Button>
+        <GreenButton
+          type="submit"
+          clickFunction={verifyToken}
+          btnText="Join an existing list"
+        />
       </form>
     </div>
   );
