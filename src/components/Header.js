@@ -1,6 +1,5 @@
 import { Typography } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
-import { CardMedia } from '@material-ui/core';
 
 const Header = () => {
   const token = localStorage.getItem('token');
