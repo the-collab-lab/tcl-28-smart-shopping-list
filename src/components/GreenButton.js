@@ -1,6 +1,5 @@
 import React from 'react';
 import { Button } from '@material-ui/core';
-import '../styles/GreenButton.css';
 
 const GreenButton = (props) => {
   const { btnText, clickFunction } = props;

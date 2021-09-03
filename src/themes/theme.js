@@ -27,6 +27,42 @@ export const theme = createTheme({
     local('Asap-Regular'),
     url(${Asap}) format('ttf')
   `,
+    h1: {
+      fontSize: '2rem',
+      fontWeight: '700',
+      '@media (min-width:600px)': {
+        fontSize: '3.5rem',
+      },
+    },
+    h2: {
+      fontSize: '2.5rem',
+      fontWeight: '700',
+      lineHeight: '5rem',
+      '@media (min-width:600px)': {
+        fontSize: '4rem',
+      },
+    },
+    h5: {
+      fontSize: '1.5rem',
+      marginBottom: 20,
+    },
+    h6: {
+      fontSize: '1.2rem',
+      margin: '0 20px 20px',
+      textAlign: 'center',
+      '@media (min-width:600px)': {
+        fontSize: '2.2rem',
+        maxWidth: '70%',
+      },
+    },
+    subtitle1: {
+      marginTop: 20,
+    },
+    subtitle2: {
+      fontSize: '1.2rem',
+      marginBottom: 20,
+      marginTop: 20,
+    },
   },
   overrides: {
     MuiCssBaseline: {
@@ -37,18 +73,8 @@ export const theme = createTheme({
     MuiButton: {
       root: {
         borderRadius: '25px',
-        margin: '8px',
+        margin: '20px',
       },
     },
   },
 });
-
-theme.typography.h2 = {
-  fontSize: '2.3rem',
-  '@media (min-width:600px)': {
-    fontSize: '3rem',
-  },
-  [theme.breakpoints.up('md')]: {
-    fontSize: '4rem',
-  },
-};
