@@ -39,6 +39,15 @@ export const useStyles = makeStyles({
       color: '#000',
     },
   },
+  list: {
+    width: '60%',
+    margin: '0 auto',
+    display: 'flex',
+    flexDirection: 'columnn',
+    listStyle: 'none',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 });
 
 const ItemsList = () => {
@@ -76,6 +85,35 @@ const ItemsList = () => {
         value={search}
         onChange={(e) => setSearch(e.target.value)}
       />
+      <ul className={classes.list}>
+        <li
+          style={{
+            backgroundColor: '#98D79A',
+            padding: '15px',
+            margin: '1.3rem',
+          }}
+        >
+          Need to buy soon
+        </li>
+        <li
+          style={{
+            backgroundColor: '#EBBB73',
+            padding: '15px',
+            margin: '1.3rem',
+          }}
+        >
+          Kind Of Soon
+        </li>
+        <li
+          style={{
+            backgroundColor: '#FFA770',
+            padding: '15px',
+            margin: '1.3rem',
+          }}
+        >
+          Not soon
+        </li>
+      </ul>
       {search && (
         <Button
           className={classes.deleteBtn}

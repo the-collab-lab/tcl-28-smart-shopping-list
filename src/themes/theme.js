@@ -42,9 +42,16 @@ export const theme = createTheme({
         fontSize: '4rem',
       },
     },
+    h3: {
+      cursor: 'pointer',
+      fontSize: '1.5rem',
+      '@media (min-width:600px)': {
+        fontSize: '4rem',
+      },
+    },
     h5: {
       fontSize: '1.5rem',
-      marginBottom: 20,
+      margin: 20,
     },
     h6: {
       fontSize: '1.2rem',
