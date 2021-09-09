@@ -40,13 +40,26 @@ export const useStyles = makeStyles({
     },
   },
   list: {
-    width: '60%',
+    width: '50%',
     margin: '0 auto',
     display: 'flex',
-    flexDirection: 'columnn',
+    padding: 0,
+    flexDirection: 'column',
     listStyle: 'none',
     alignItems: 'center',
     justifyContent: 'center',
+    '@media (min-width:600px)': {
+      flexDirection: 'row',
+    },
+  },
+  listItem: {
+    padding: '.8rem',
+    margin: '.8rem',
+    borderRadius: '5px',
+    '@media (max-width:600px)': {
+      width: '100%',
+      margin: '8px 0',
+    },
   },
 });
 
@@ -89,27 +102,24 @@ const ItemsList = () => {
         <li
           style={{
             backgroundColor: '#98D79A',
-            padding: '15px',
-            margin: '1.3rem',
           }}
+          className={classes.listItem}
         >
           Need to buy soon
         </li>
         <li
           style={{
             backgroundColor: '#EBBB73',
-            padding: '15px',
-            margin: '1.3rem',
           }}
+          className={classes.listItem}
         >
           Kind Of Soon
         </li>
         <li
           style={{
             backgroundColor: '#FFA770',
-            padding: '15px',
-            margin: '1.3rem',
           }}
+          className={classes.listItem}
         >
           Not soon
         </li>
