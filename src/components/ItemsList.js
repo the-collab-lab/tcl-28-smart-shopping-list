@@ -98,32 +98,7 @@ const ItemsList = () => {
         value={search}
         onChange={(e) => setSearch(e.target.value)}
       />
-      <ul className={classes.list}>
-        <li
-          style={{
-            backgroundColor: '#98D79A',
-          }}
-          className={classes.listItem}
-        >
-          Need to buy soon
-        </li>
-        <li
-          style={{
-            backgroundColor: '#EBBB73',
-          }}
-          className={classes.listItem}
-        >
-          Kind Of Soon
-        </li>
-        <li
-          style={{
-            backgroundColor: '#FFA770',
-          }}
-          className={classes.listItem}
-        >
-          Not soon
-        </li>
-      </ul>
+
       {search && (
         <Button
           className={classes.deleteBtn}
@@ -143,6 +118,32 @@ const ItemsList = () => {
             </>
           ) : (
             <>
+              <ul className={classes.list}>
+                <li
+                  style={{
+                    backgroundColor: '#98D79A',
+                  }}
+                  className={classes.listItem}
+                >
+                  Need to buy soon
+                </li>
+                <li
+                  style={{
+                    backgroundColor: '#EBBB73',
+                  }}
+                  className={classes.listItem}
+                >
+                  Kind Of Soon
+                </li>
+                <li
+                  style={{
+                    backgroundColor: '#FFA770',
+                  }}
+                  className={classes.listItem}
+                >
+                  Not soon
+                </li>
+              </ul>
               {snapshot.docs
                 .filter((doc) =>
                   doc.data().name.toLowerCase().includes(search.toLowerCase()),
