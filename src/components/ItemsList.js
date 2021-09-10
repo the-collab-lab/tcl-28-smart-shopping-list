@@ -57,8 +57,9 @@ export const useStyles = makeStyles({
     margin: '.8rem',
     borderRadius: '5px',
     '@media (max-width:600px)': {
-      width: '100%',
-      margin: '8px 0',
+      width: '80%',
+      margin: '.5rem',
+      padding: '.3rem',
     },
   },
 });
@@ -133,7 +134,7 @@ const ItemsList = () => {
                   }}
                   className={classes.listItem}
                 >
-                  Kind Of Soon
+                  Kind of soon
                 </li>
                 <li
                   style={{

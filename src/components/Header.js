@@ -22,8 +22,8 @@ const Header = () => {
       </Box>
       <div className="menu-container">
         <Typography variant="h3" onClick={onClick} className="menu-trigger">
-          <Typography variant="h5">
-            Would you like to invite your friends to your shoppping list?
+          <Typography variant="h4">
+            Would you like to invite your friends?
           </Typography>
         </Typography>
         <div
