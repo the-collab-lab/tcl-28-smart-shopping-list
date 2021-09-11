@@ -51,16 +51,14 @@ export const theme = createTheme({
     },
     h4: {
       fontSize: '1.4rem',
-      margin: '15px auto',
+      margin: '15px 20px',
       backgroundColor: '#FFA770',
       borderRadius: '5px',
       textAlign: 'center',
       padding: '15px',
-      width: '80%',
       boxShadow: '0 1px 8px rgba(0, 0, 0, 0.2)',
       '@media (min-width:600px)': {
         fontSize: '1.5rem',
-        width: '40%',
       },
     },
     h5: {
