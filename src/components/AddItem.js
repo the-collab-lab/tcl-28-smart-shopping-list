@@ -5,6 +5,7 @@ import Input from './Input';
 import GreenButton from './GreenButton';
 import Header from './Header';
 import { makeStyles } from '@material-ui/core/styles';
+import { Typography } from '@material-ui/core';
 import swal from 'sweetalert';
 
 const useStyles = makeStyles({
@@ -132,7 +133,7 @@ const AddItem = () => {
     <div>
       <Header />
       <form onSubmit={handleClick}>
-        <h2>Add new item</h2>
+        <Typography variant="h5">Add new item</Typography>
         <Input
           required
           name="item"
@@ -141,7 +142,9 @@ const AddItem = () => {
           onChange={handleChange}
         />
         <fieldset className={classes.fieldset}>
-          <legend>How soon will you buy this again?</legend>
+          <Typography variant="h5">
+            How soon will you buy this again?
+          </Typography>
           <input
             type="radio"
             name="frequency"
