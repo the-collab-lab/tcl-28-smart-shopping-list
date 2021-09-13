@@ -5,13 +5,12 @@ import 'firebase/firestore';
 
 // Initalize Firebase.
 const firebaseConfig = {
-  apiKey: 'AIzaSyAHF2uMo65moutEWAHLVQiEOFe0csWAGPY',
-  authDomain: 'lettuce-know.firebaseapp.com',
-  projectId: 'lettuce-know',
-  storageBucket: 'lettuce-know.appspot.com',
-  messagingSenderId: '1093714899778',
-  appId: '1:1093714899778:web:10a9da4aba7b9a01390edb',
-  measurementId: 'G-35Q9CH23RW',
+  apiKey: 'AIzaSyCOq3qrkFz2XJK_-2kiUB-G3bhm1DxxLHo',
+  authDomain: 'tcl-28-shopping-list.firebaseapp.com',
+  projectId: 'tcl-28-shopping-list',
+  storageBucket: 'tcl-28-shopping-list.appspot.com',
+  messagingSenderId: '499603825685',
+  appId: '1:499603825685:web:e1385df4cdcd43ec1a9a1c',
 };
 
 let fb = firebase.initializeApp(firebaseConfig);
