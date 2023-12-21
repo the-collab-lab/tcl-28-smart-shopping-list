@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { Button, Typography } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
 import { useDetectOutsideClick } from '../hooks/useDetectOutsideClick';
 

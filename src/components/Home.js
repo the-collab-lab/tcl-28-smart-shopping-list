@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import getToken from '../lib/tokens';
 import { useHistory } from 'react-router-dom';
 import { firestore } from '../lib/firebase';
 import Input from './Input';
@@ -35,11 +34,19 @@ const Home = () => {
   };
 
   const createToken = async () => {
-    const token = getToken();
-    localStorage.setItem('token', token);
-    await firestore.collection('tokens').doc(token).set({});
-    history.push('/list');
+    // const token = getToken();
+    // localStorage.setItem('token', token);
+    // await firestore.collection('tokens').doc(token).set({});
+    // history.push('/list');
+    console.log('Creating new lists is no longer supported.');
   };
+
+  /** Using this alert instead of the ArchivalNoticeModal due to legacy deps */
+  useEffect(() => {
+    alert(
+      'This Smart Shopping List App was made by early-career developers at The Collab Lab. This project has now been archived. To view the demo shopping list, enter the three word token: the collab lab. The following features are no longer supported: creating new lists, adding & deleting items from the list, and marking items on the list as purchased.',
+    );
+  }, []);
 
   return (
     <>
